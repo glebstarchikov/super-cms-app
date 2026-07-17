@@ -45,32 +45,12 @@ async function main() {
       "Pages CMS is an open source CMS for editing content in GitHub repositories.",
     public: false,
     default_permissions: {
-      administration: "write",
-      actions: "write",
-      checks: "read",
-      statuses: "read",
       contents: "write",
-      email_addresses: "read",
       metadata: "read",
     },
-    default_events: [
-      "installation_target",
-      "repository",
-      "push",
-      "delete",
-      "check_run",
-      "check_suite",
-      "status",
-      "workflow_run",
-    ],
     request_oauth_on_install: false,
     setup_on_update: true,
     setup_url: setupUrl,
-    hook_attributes: {
-      url: webhookUrl,
-      active: true,
-      secret: webhookSecret,
-    },
   };
 
   const appCreationUrl =
