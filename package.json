@@ -1,9 +1,9 @@
 {
-  "name": "pagescms",
-  "description": "A user-friendly CMS for Next.js, Astro, Hugo, Nuxt, Jekyll or any other static site generator.",
+  "name": "plainly",
+  "description": "Plainly — a friendly content editor for static sites. Fork of Pages CMS (https://pagescms.org).",
   "license": "MIT",
   "author": {
-    "name": "Ronan Berder"
+    "name": "Gleb Starchikov"
   },
   "version": "2.1.8",
   "private": true,
