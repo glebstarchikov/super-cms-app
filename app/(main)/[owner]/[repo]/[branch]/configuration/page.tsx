@@ -60,28 +60,6 @@ export default function Page() {
         path=".pages.yml"
         onSave={handleSave}
         title="Конфигурация"
-        headerMeta={
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                asChild
-                variant="ghost"
-                size="icon"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Link
-                  href="https://pagescms.org/docs/configuration/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <BookText />
-                  <span className="sr-only">Документация по конфигурации</span>
-                </Link>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Документация</TooltipContent>
-          </Tooltip>
-        }
       />
     </>
   );

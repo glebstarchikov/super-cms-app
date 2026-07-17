@@ -232,26 +232,6 @@ export function CachePage({
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <h1 className="font-semibold text-lg">Кэш</h1>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                asChild
-                variant="ghost"
-                size="icon"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Link
-                  href="https://pagescms.org/docs/development/caching/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <BookText />
-                  <span className="sr-only">Документация по кэшу</span>
-                </Link>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Документация</TooltipContent>
-          </Tooltip>
         </div>
         <ConfirmActionButton
           label="Очистить весь кэш"

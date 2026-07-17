@@ -50,13 +50,18 @@ export const CollaboratorAddedEmailTemplate = ({
         >
           <Container className="my-[40px] mx-auto p-[20px] max-w-[465px]">
             <Section className="mt-[24px]">
-              <Img
-                src={`${baseUrl}/images/email-logo.png`}
-                width="42"
-                height="42"
-                alt="Plainly"
-                className="my-0 mx-auto"
-              />
+              <Text
+                style={{
+                  fontSize: "26px",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  textAlign: "center",
+                  margin: 0,
+                  color: emailTheme.foreground,
+                }}
+              >
+                plainly<span style={{ color: "#E8502D" }}>.</span>
+              </Text>
             </Section>
             <Heading
               className="text-[24px] font-semibold p-0 my-[30px] mx-0 text-center tracking-tight"

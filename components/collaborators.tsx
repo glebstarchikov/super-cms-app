@@ -298,26 +298,6 @@ export function Collaborators({
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <h1 className="font-semibold text-lg">Участники</h1>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                asChild
-                variant="ghost"
-                size="icon"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Link
-                  href="https://pagescms.org/docs/configuration/collaborators/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <BookText />
-                  <span className="sr-only">Документация по участникам</span>
-                </Link>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Открыть документацию</TooltipContent>
-          </Tooltip>
         </div>
         {showInviteAction ? (
           <InviteCollaboratorsDialog

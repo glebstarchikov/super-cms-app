@@ -22,7 +22,6 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 const appUrl = getBaseUrl();
-const socialImage = "/images/social-card.png";
 const description = "Простой редактор контента для вашего сайта.";
 
 export const metadata: Metadata = {
@@ -41,20 +40,11 @@ export const metadata: Metadata = {
     siteName: "Plainly",
     title: "Plainly",
     description,
-    images: [
-      {
-        url: socialImage,
-        width: 1200,
-        height: 630,
-        alt: "Plainly social card",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Plainly",
     description,
-    images: [socialImage],
   },
 };
 
