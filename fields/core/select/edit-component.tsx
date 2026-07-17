@@ -84,7 +84,7 @@ const EditComponent = (props: any) => {
 
   const placeholder = isReadonly
     ? undefined
-    : field.options?.placeholder || "Select...";
+    : field.options?.placeholder || "Выберите...";
 
   const handleValueChange = (nextValue: Option[] | Option | null) => {
     if (isReadonly) return;
@@ -135,7 +135,7 @@ const EditComponent = (props: any) => {
             </ComboboxValue>
           </ComboboxChips>
           <ComboboxContent anchor={anchor}>
-            <ComboboxEmpty>No options found.</ComboboxEmpty>
+            <ComboboxEmpty>Ничего не найдено.</ComboboxEmpty>
             <ComboboxList>
               {(option: Option) => (
                 <ComboboxItem key={option.value} value={option}>
@@ -154,7 +154,7 @@ const EditComponent = (props: any) => {
             readOnly={isReadonly}
           />
           <ComboboxContent>
-            <ComboboxEmpty>No options found.</ComboboxEmpty>
+            <ComboboxEmpty>Ничего не найдено.</ComboboxEmpty>
             <ComboboxList>
               {(option: Option) => (
                 <ComboboxItem key={option.value} value={option}>

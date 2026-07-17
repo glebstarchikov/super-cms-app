@@ -54,7 +54,7 @@ export function Thumbnail({
         ? rawUrl
           ? <img
               src={rawUrl}
-              alt={path.split("/").pop() || "thumbnail"}
+              alt={path.split("/").pop() || "миниатюра"}
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -62,10 +62,10 @@ export function Thumbnail({
             ? <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title={error}>
                 <Ban className="h-4 w-4"/>
               </div>
-            : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title="Loading...">
+            : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title="Загрузка…">
                 <Loader className="h-4 w-4 animate-spin"/>
               </div>
-        : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title="No image">
+        : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title="Нет изображения">
             <ImageOff className="h-4 w-4"/>
           </div>
       }

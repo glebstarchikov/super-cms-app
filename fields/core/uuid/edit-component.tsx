@@ -43,7 +43,7 @@ const EditComponent = forwardRef((props: any, ref: React.Ref<HTMLInputElement>) 
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Generate new UUID</p>
+              <p>Сгенерировать новый UUID</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

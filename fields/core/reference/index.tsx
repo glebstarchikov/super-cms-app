@@ -20,11 +20,11 @@ const schema = (field: Field) => {
 
   if (field.options?.multiple) {
     let zodSchema = z.array(singleValueSchema.refine((value) => value.length > 0, {
-      message: "Invalid reference",
+      message: "Недопустимая ссылка",
     }));
-    if (field.required) zodSchema = zodSchema.min(1, "This field is required");
-    if (min !== undefined) zodSchema = zodSchema.min(min, `Select at least ${min} reference${min === 1 ? "" : "s"}`);
-    if (max !== undefined) zodSchema = zodSchema.max(max, `Select at most ${max} reference${max === 1 ? "" : "s"}`);
+    if (field.required) zodSchema = zodSchema.min(1, "Обязательное поле");
+    if (min !== undefined) zodSchema = zodSchema.min(min, `Выберите не менее ${min} ссылк${min === 1 ? "у" : "и"}`);
+    if (max !== undefined) zodSchema = zodSchema.max(max, `Выберите не более ${max} ссылк${max === 1 ? "у" : "и"}`);
 
     return z.preprocess(
       (val) => {
@@ -38,7 +38,7 @@ const schema = (field: Field) => {
   return z.preprocess(
     (val) => (val === null || val === undefined ? "" : val),
     field.required
-      ? singleValueSchema.refine((value) => value.length > 0, { message: "This field is required" })
+      ? singleValueSchema.refine((value) => value.length > 0, { message: "Обязательное поле" })
       : z.union([z.literal(""), singleValueSchema]).optional()
   );
 };

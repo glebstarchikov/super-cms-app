@@ -850,7 +850,7 @@ const EditComponent = forwardRef(
           disabled={isReadonly || isTransforming || pendingUploads > 0}
           data-active={mode === "editor" ? "true" : undefined}
         >
-          Editor
+          Редактор
         </button>
         <button
           type="button"
@@ -864,7 +864,7 @@ const EditComponent = forwardRef(
           disabled={isReadonly || isTransforming || pendingUploads > 0}
           data-active={mode === "source" ? "true" : undefined}
         >
-          Source
+          Код
         </button>
       </div>
     );

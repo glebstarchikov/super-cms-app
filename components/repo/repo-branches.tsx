@@ -65,21 +65,21 @@ export function RepoBranches() {
   };
 
   if (!branches || branches.length === 0) {
-    return <div className="text-muted-foreground p-4">No branches.</div>;
+    return <div className="text-muted-foreground p-4">Нет веток.</div>;
   }
 
   return (
     <div className="flex flex-col gap-y-2">
       <header className="flex gap-x-2">
         <Input
-          placeholder="Search branches by name"
+          placeholder="Поиск веток по названию"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <Button
           disabled={!search || !isValidBranchName(search) || branches.includes(search) || isSubmitting}
           onClick={handleCreateBranch}>
-          Create
+          Создать
           {isSubmitting && (<Loader className="ml-2 h-4 w-4 animate-spin" />)}
         </Button>
       </header>
@@ -100,7 +100,7 @@ export function RepoBranches() {
               {branch === config?.branch && <Check className="h-4 w-4 ml-auto opacity-50" />}
             </Link>
           ))
-          : <div className="text-muted-foreground py-6 text-center">No branches found.</div>
+          : <div className="text-muted-foreground py-6 text-center">Ветки не найдены.</div>
         }
       </main>
     </div>

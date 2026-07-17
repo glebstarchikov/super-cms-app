@@ -85,11 +85,11 @@ const getPrimaryIcon = (isBusy: boolean) => (
 
 const formatRunLine = (run: ActionRunSummary) => {
   const createdAt = run.createdAt ? new Date(run.createdAt) : null;
-  const secondary = run.triggeredByName ? `by ${run.triggeredByName}` : null;
+  const secondary = run.triggeredByName ? `от ${run.triggeredByName}` : null;
   if (!createdAt || Number.isNaN(createdAt.getTime())) {
     return (
       <span className="flex min-w-0 flex-col">
-        <span className="truncate">Unknown time</span>
+        <span className="truncate">Время неизвестно</span>
         {secondary && (
           <span className="truncate text-xs text-muted-foreground">{secondary}</span>
         )}
@@ -187,7 +187,7 @@ export function RepoActionButtons({
       } catch (error) {
         console.error(error);
         if (refreshErrorToastIdRef.current == null) {
-          refreshErrorToastIdRef.current = toast.error("Couldn’t refresh action status. Retrying…");
+          refreshErrorToastIdRef.current = toast.error("Не удалось обновить статус действия. Повторяем попытку…");
         }
       }
     }, 4000);
@@ -199,7 +199,7 @@ export function RepoActionButtons({
     action: RepoActionConfig,
     inputValues: Record<string, string | number | boolean> = {},
   ) => {
-    const toastId = toast.loading(`Starting "${action.label}"…`);
+    const toastId = toast.loading(`Запуск «${action.label}»…`);
 
     setDispatching((current) => ({ ...current, [action.name]: true }));
 
@@ -220,7 +220,7 @@ export function RepoActionButtons({
       });
       const payload = await requireApiSuccess<{ data: { id: number } }>(
         response,
-        "Failed to dispatch action",
+        "Не удалось запустить действие",
       );
       trackActionRun({
         runId: payload.data.id,
@@ -231,7 +231,7 @@ export function RepoActionButtons({
         toastId,
       });
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Failed to dispatch action.", { id: toastId });
+        toast.error(error instanceof Error ? error.message : "Не удалось запустить действие.", { id: toastId });
       } finally {
         setDispatching((current) => ({ ...current, [action.name]: false }));
       }
@@ -379,7 +379,7 @@ export function RepoActionButtons({
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link href={`/${owner}/${repo}/${encodeURIComponent(refName)}/actions`}>
-                  View all actions
+                  Все действия
                 </Link>
               </DropdownMenuItem>
             </>
@@ -406,7 +406,7 @@ export function RepoActionButtons({
           <DialogDescription>
             {typeof dialogAction?.confirm === "object" && dialogAction.confirm.message
               ? dialogAction.confirm.message
-              : "This will trigger a GitHub Action."}
+              : "Будет запущено действие GitHub."}
           </DialogDescription>
         </DialogHeader>
         {dialogAction?.fields?.length ? (
@@ -428,12 +428,12 @@ export function RepoActionButtons({
             setDialogAction(null);
             setDialogValues({});
           }}>
-            Cancel
+            Отменить
           </Button>
           <Button onClick={handleDialogSubmit} disabled={isDialogSubmitDisabled}>
             {typeof dialogAction?.confirm === "object" && dialogAction.confirm.button
               ? dialogAction.confirm.button
-              : dialogAction?.label ?? "Run action"}
+              : dialogAction?.label ?? "Запустить"}
           </Button>
         </DialogFooter>
       </DialogContent>

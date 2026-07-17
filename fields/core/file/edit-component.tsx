@@ -68,13 +68,13 @@ const FileTeaser = ({ file, config, onRemove, getFileIcon }: {
                 href={`https://github.com/${config.owner}/${config.repo}/blob/${config.branch}/${file}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`View ${getFileName(file)} on GitHub`}
+                aria-label={`Открыть ${getFileName(file)} на GitHub`}
               >
                 <ArrowUpRight />
               </a>
             </Button>
           </TooltipTrigger>
-          <TooltipContent>View on GitHub</TooltipContent>
+          <TooltipContent>Открыть на GitHub</TooltipContent>
         </Tooltip>
         {onRemove && (
           <Tooltip>
@@ -85,12 +85,12 @@ const FileTeaser = ({ file, config, onRemove, getFileIcon }: {
                 size="icon"
                 className="text-muted-foreground hover:text-foreground"
                 onClick={onRemove}
-                aria-label={`Remove ${getFileName(file)}`}
+                aria-label={`Убрать ${getFileName(file)}`}
               >
                 <Trash2 />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Remove</TooltipContent>
+            <TooltipContent>Убрать</TooltipContent>
           </Tooltip>
         )}
       </ButtonGroup>
@@ -310,12 +310,12 @@ const EditComponent = forwardRef((props: EditorProps, ref: React.Ref<HTMLInputEl
   if (!mediaConfig) {
     return (
       <p className="text-muted-foreground bg-muted rounded-md px-3 py-2">
-      No media configuration found. {' '}
+      Настройки медиа не найдены. {' '}
       <a 
         href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch || "")}/settings`}
         className="underline hover:text-foreground"
       >
-        Check your settings
+        Проверьте настройки
       </a>.
     </p>
     );
@@ -370,7 +370,7 @@ const EditComponent = forwardRef((props: EditorProps, ref: React.Ref<HTMLInputEl
               <MediaUpload.Trigger>
                 <Button type="button" size="sm" variant="outline" className="gap-2">
                   <Upload className="h-3.5 w-3.5"/>
-                  Upload
+                  Загрузить
                 </Button>
               </MediaUpload.Trigger>
               
@@ -383,7 +383,7 @@ const EditComponent = forwardRef((props: EditorProps, ref: React.Ref<HTMLInputEl
               >
                 <Button type="button" size="sm" variant="outline">
                   <FolderOpen />
-                  Select
+                  Выбрать
                 </Button>
               </MediaDialog>
             </div>

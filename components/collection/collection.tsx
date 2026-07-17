@@ -123,7 +123,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
           className="pl-9"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          placeholder="Search entries..."
+          placeholder="Поиск записей..."
         />
       </div>
       {showFolderCreate && (
@@ -147,7 +147,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
               </FolderCreate>
             </div>
           </TooltipTrigger>
-          <TooltipContent>Create folder</TooltipContent>
+          <TooltipContent>Создать папку</TooltipContent>
         </Tooltip>
       )}
       {showAddEntry && (
@@ -156,7 +156,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
             className={cn(buttonVariants(), "hidden sm:flex")}
             href={addEntryHref}
           >
-            Add an entry
+            Добавить запись
           </Link>
           <Link
             className={cn(buttonVariants({ size: "icon" }), "sm:hidden shrink-0")}
@@ -277,7 +277,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
   const fetchCollectionByUrl = useCallback(
     async (apiUrl: string): Promise<Record<string, any>[]> => {
       const response = await fetch(apiUrl);
-      const result = await requireApiSuccess<any>(response, "Fetch failed");
+      const result = await requireApiSuccess<any>(response, "Не удалось загрузить данные");
 
       if (result.data.errors?.length) {
         result.data.errors.forEach((e: any) => toast.error(e));
@@ -327,7 +327,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
     setError(
       swrCollectionError instanceof Error
         ? swrCollectionError.message
-        : "Fetch failed",
+        : "Не удалось загрузить данные",
     );
   }, [swrCollectionError]);
 
@@ -349,7 +349,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
           setError(err.message);
         } else {
           toast.error(
-            `Could not load items inside ${getFileName(fetchPath)}: ${err.message}`,
+            `Не удалось загрузить содержимое папки ${getFileName(fetchPath)}: ${err.message}`,
           );
         }
         return undefined;
@@ -461,7 +461,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
             );
             const data = await requireApiSuccess<any>(
               response,
-              "Failed to rename file",
+              "Не удалось переименовать файл",
             );
 
             resolve(data);
@@ -471,7 +471,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
         });
 
         toast.promise(renamePromise, {
-          loading: `Renaming "${path}" to "${newPath}"`,
+          loading: `Переименование «${path}» в «${newPath}»`,
           success: (data: any) => {
             router.push(
               `/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/collection/${encodeURIComponent(name)}/new?parent=${encodeURIComponent(getParentPath(normalizedNewPath))}`,
@@ -539,7 +539,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
 
     tableColumns.push({
       accessorKey: "actions",
-      header: "Actions",
+      header: "Действия",
       cell: ({ row }: { row: any }) => (
         <div className="flex gap-1 justify-end">
           {row.original.type === "file" && (
@@ -550,7 +550,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                 )}
                 href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/collection/${name}/edit/${encodeURIComponent(row.original.path)}`}
               >
-                Edit
+                Редактировать
               </Link>
               <FileOptions
                 path={row.original.path}
@@ -590,14 +590,14 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                       </Button>
                     </AlertDialogTrigger>
                   </TooltipTrigger>
-                  <TooltipContent>Add children entry</TooltipContent>
+                  <TooltipContent>Добавить дочернюю запись</TooltipContent>
                 </Tooltip>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Rename this file first?</AlertDialogTitle>
+                    <AlertDialogTitle>Сначала переименовать файл?</AlertDialogTitle>
                     <AlertDialogDescription>
-                      Before adding children to this file, you must rename it
-                      from &quot;{row.original.path}&quot; to &quot;
+                      Прежде чем добавлять дочерние записи в этот файл,
+                      переименуйте его из &quot;{row.original.path}&quot; в &quot;
                       {row.original.path.replace(
                         `.${schema.extension}`,
                         `/${schema.view?.node?.filename}`,
@@ -606,7 +606,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>Отменить</AlertDialogCancel>
                     <AlertDialogAction
                       onClick={() =>
                         handleConfirmRenameNode(
@@ -618,7 +618,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                         )
                       }
                     >
-                      Rename
+                      Переименовать
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -643,7 +643,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                     <Plus className="size-4" />
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent>Add children entry</TooltipContent>
+                <TooltipContent>Добавить дочернюю запись</TooltipContent>
               </Tooltip>
             ))}
         </div>
@@ -770,7 +770,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                 <div className="flex gap-1 justify-end">
                   <ButtonGroup>
                     <Button variant="outline" size="sm" disabled>
-                      Edit
+                      Редактировать
                     </Button>
                     <Button variant="outline" size="icon-sm" disabled>
                       <EllipsisVertical className="size-4" />
@@ -865,7 +865,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center">
                     <BreadcrumbEllipsis className="size-4" />
-                    <span className="sr-only">Show hidden segments</span>
+                    <span className="sr-only">Показать скрытые сегменты</span>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start">
                     {middleEntries.map((entry) => (
@@ -988,12 +988,12 @@ export function Collection({ name, path }: { name: string; path?: string }) {
         <EmptyHeader>
           <EmptyTitle>
             {error === "Not found"
-              ? "Folder not found"
-              : "Something went wrong"}
+              ? "Папка не найдена"
+              : "Что-то пошло не так"}
           </EmptyTitle>
           <EmptyDescription>
             {error === "Not found"
-              ? `The collection folder "${schema.path}" does not exist yet.`
+              ? `Папка коллекции «${schema.path}» ещё не существует.`
               : error}
           </EmptyDescription>
         </EmptyHeader>
@@ -1001,7 +1001,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
           {error === "Not found" ? (
             canCreate ? (
               <EmptyCreate type="content" name={schema.name}>
-                Create folder
+                Создать папку
               </EmptyCreate>
             ) : null
           ) : (
@@ -1009,7 +1009,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
               className={buttonVariants({ variant: "default" })}
               href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/settings`}
             >
-              Go to settings
+              Перейти к настройкам
             </Link>
           )}
         </EmptyContent>

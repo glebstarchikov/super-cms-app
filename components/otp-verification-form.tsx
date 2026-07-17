@@ -31,7 +31,7 @@ export function OtpVerificationForm({
   pending,
   resendDisabled,
   resendPending,
-  submitLabel = "Verify code",
+  submitLabel = "Подтвердить код",
   onChange,
   onResend,
   onSignInAnotherWay,
@@ -41,10 +41,10 @@ export function OtpVerificationForm({
     <form className="flex w-full flex-col items-center gap-6" onSubmit={onSubmit}>
       <div className="space-y-2 text-center">
         <h1 className="text-lg font-medium tracking-tight">
-          Verify your login
+          Подтверждение входа
         </h1>
         <p className="text-sm text-muted-foreground">
-          Enter the 6-digit code sent to {emailLabel}.
+          Введите 6-значный код, отправленный на {emailLabel}.
         </p>
       </div>
 
@@ -79,7 +79,7 @@ export function OtpVerificationForm({
           type="button"
           variant="ghost"
         >
-          Resend code
+          Отправить код повторно
           {resendPending && <Loader className="size-4 animate-spin" />}
         </Button>
         {onSignInAnotherWay && (
@@ -90,7 +90,7 @@ export function OtpVerificationForm({
             type="button"
             variant="ghost"
           >
-            Sign in another way
+            Войти другим способом
           </Button>
         )}
       </div>

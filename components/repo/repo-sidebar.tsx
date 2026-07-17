@@ -195,13 +195,13 @@ function RepoSwitcher() {
                 target="_blank"
                 rel="noreferrer"
               >
-                View on GitHub
+                Открыть на GitHub
                 <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
               </a>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Branches
+              Ветки
             </DropdownMenuLabel>
             <DropdownMenuRadioGroup
               value={currentBranch}
@@ -215,13 +215,13 @@ function RepoSwitcher() {
             </DropdownMenuRadioGroup>
             <DropdownMenuSeparator />
             <DialogTrigger asChild>
-              <DropdownMenuItem>Manage branches</DropdownMenuItem>
+              <DropdownMenuItem>Управление ветками</DropdownMenuItem>
             </DialogTrigger>
             {recentRepos.length > 0 && (
               <>
                 <DropdownMenuSeparator />
                 <DropdownMenuLabel className="text-xs text-muted-foreground">
-                  Recently visited
+                  Недавние
                 </DropdownMenuLabel>
                 {recentRepos.map((visit) => (
                   <DropdownMenuItem
@@ -233,7 +233,7 @@ function RepoSwitcher() {
                     >
                       <img
                         src={`https://github.com/${visit.owner}.png`}
-                        alt={`${visit.owner}'s avatar`}
+                        alt={`Аватар ${visit.owner}`}
                         className="size-5 rounded"
                       />
                       <span className="truncate">{visit.repo}</span>
@@ -244,14 +244,14 @@ function RepoSwitcher() {
             )}
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/">All projects</Link>
+              <Link href="/">Все проекты</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Manage branches</DialogTitle>
+          <DialogTitle>Управление ветками</DialogTitle>
         </DialogHeader>
         <RepoBranches />
       </DialogContent>
@@ -314,7 +314,7 @@ export function RepoSidebar() {
     return media.map((item: any) => ({
       type: "media",
       name: item.name || "default",
-      label: item.label || item.name || "Media",
+      label: item.label || item.name || "Медиа",
     }));
   }, [config]);
 
@@ -329,7 +329,7 @@ export function RepoSidebar() {
     if (canManageRepo && isCacheEnabled(configObject)) {
       items.push({
         key: "admin-cache",
-        label: "Cache",
+        label: "Кэш",
         href: `/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/cache`,
         icon: <Database className="size-4" />,
       });
@@ -338,14 +338,14 @@ export function RepoSidebar() {
     if (canManageRepo) {
       items.push({
         key: "admin-actions",
-        label: "Actions",
+        label: "Действия",
         href: `/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/actions`,
         icon: <ListVideo className="size-4" />,
       });
 
       items.push({
         key: "admin-collaborators",
-        label: "Collaborators",
+        label: "Участники",
         href: `/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/collaborators`,
         icon: <Users className="size-4" />,
       });
@@ -354,7 +354,7 @@ export function RepoSidebar() {
     if (canManageRepo && isConfigEnabled(configObject)) {
       items.push({
         key: "admin-configuration",
-        label: "Configuration",
+        label: "Настройки",
         href: `/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/configuration`,
         icon: <Settings className="size-4" />,
       });
@@ -422,8 +422,8 @@ export function RepoSidebar() {
       };
 
       return [
-        ...collectActiveGroupKeys(contentNavigation, "Content"),
-        ...collectActiveGroupKeys(mediaNavigation, "Media"),
+        ...collectActiveGroupKeys(contentNavigation, "Контент"),
+        ...collectActiveGroupKeys(mediaNavigation, "Медиа"),
       ];
     },
     [contentNavigation, hasActiveDescendant, mediaNavigation],
@@ -570,12 +570,12 @@ export function RepoSidebar() {
   };
 
   const groups = [
-    renderNavigationGroup("Content", contentNavigation),
-    renderNavigationGroup("Media", mediaNavigation),
+    renderNavigationGroup("Контент", contentNavigation),
+    renderNavigationGroup("Медиа", mediaNavigation),
     rootActions.length > 0 && config
       ? (
         <SidebarGroup key="Actions">
-          <SidebarGroupLabel>Actions</SidebarGroupLabel>
+          <SidebarGroupLabel>Действия</SidebarGroupLabel>
           <SidebarGroupContent>
             <RepoActionButtons
               actions={rootActions}
@@ -589,7 +589,7 @@ export function RepoSidebar() {
         </SidebarGroup>
       )
       : null,
-    renderFlatGroup("Admin", adminItems),
+    renderFlatGroup("Управление", adminItems),
   ].filter(Boolean);
 
   return (

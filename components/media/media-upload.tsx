@@ -81,7 +81,7 @@ function MediaUploadRoot({ children, path, onUpload, media, extensions, multiple
               const base64Content = (reader.result as string).replace(/^(.+,)/, "");
               resolve(base64Content);
             };
-            reader.onerror = () => reject(new Error("Failed to read file"));
+            reader.onerror = () => reject(new Error("Не удалось прочитать файл"));
             reader.readAsDataURL(uploadFile);
           });
 
@@ -98,19 +98,19 @@ function MediaUploadRoot({ children, path, onUpload, media, extensions, multiple
 
           const data = await requireApiSuccess<any>(
             response,
-            "Failed to upload file",
+            "Не удалось загрузить файл",
           );
 
           return data.data as FileSaveData;
         })();
 
         await toast.promise(uploadPromise, {
-          loading: `Uploading ${file.name}`,
+          loading: `Загрузка: ${file.name}`,
           success: (savedEntry) => {
             onUpload?.(savedEntry);
-            return `Uploaded ${file.name}`;
+            return `Загружено: ${file.name}`;
           },
-          error: (error: unknown) => error instanceof Error ? error.message : "Upload failed",
+          error: (error: unknown) => error instanceof Error ? error.message : "Не удалось загрузить",
         });
       }
     } catch (error) {
@@ -148,12 +148,12 @@ function MediaUploadTrigger({ children }: MediaUploadTriggerProps) {
     });
 
     if (validFiles.length === 0) {
-      toast.error(`Invalid file type. Allowed: ${context.accept}`);
+      toast.error(`Недопустимый тип файла. Разрешено: ${context.accept}`);
       return [];
     }
 
     if (validFiles.length !== files.length) {
-      toast.error(`Some files were skipped. Allowed: ${context.accept}`);
+      toast.error(`Некоторые файлы пропущены. Разрешено: ${context.accept}`);
     }
 
     return validFiles;
@@ -206,12 +206,12 @@ function MediaUploadDropZone({ children, className }: MediaUploadDropZoneProps) 
     });
 
     if (validFiles.length === 0) {
-      toast.error(`Invalid file type. Allowed: ${context.accept}`);
+      toast.error(`Недопустимый тип файла. Разрешено: ${context.accept}`);
       return [];
     }
 
     if (validFiles.length !== files.length) {
-      toast.error(`Some files were skipped. Allowed: ${context.accept}`);
+      toast.error(`Некоторые файлы пропущены. Разрешено: ${context.accept}`);
     }
 
     return validFiles;
@@ -254,7 +254,7 @@ function MediaUploadDropZone({ children, className }: MediaUploadDropZoneProps) 
       {!context.disabled && isDragging && (
         <div className="absolute inset-0 bg-primary/10 rounded-lg flex items-center justify-center">
           <p className="text-sm text-foreground font-medium bg-background rounded-full px-3 py-1">
-            Drop files here to upload
+            Перетащите файлы сюда для загрузки
           </p>
         </div>
       )}

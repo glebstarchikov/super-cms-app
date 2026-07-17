@@ -68,22 +68,22 @@ export function User({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuLabel className="w-40 text-xs text-muted-foreground font-medium">
-          Theme
+          Тема
         </DropdownMenuLabel>
         <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
           <DropdownMenuRadioItem value="light" onClick={onClick}>
-            Light
+            Светлая
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="dark" onClick={onClick}>
-            Dark
+            Тёмная
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="system" onClick={onClick}>
-            System
+            Системная
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/settings">Settings</Link>
+          <Link href="/settings">Настройки</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
@@ -94,7 +94,7 @@ export function User({
             window.location.assign("/sign-in");
           }}
         >
-          Sign out
+          Выйти
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

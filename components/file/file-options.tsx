@@ -86,7 +86,7 @@ export function FileOptions({
             method: "DELETE",
           });
 
-          const data = await requireApiSuccess<any>(response, "Failed to delete file");
+          const data = await requireApiSuccess<any>(response, "Не удалось удалить файл");
 
           resolve(data);
         } catch (error) {
@@ -95,7 +95,7 @@ export function FileOptions({
       });
 
       toast.promise(deletePromise, {
-        loading: `Deleting ${path}`,
+        loading: `Удаление ${path}`,
         success: (data: any) => {
           if (onDelete) onDelete(path);
           return data.message;
@@ -117,7 +117,7 @@ export function FileOptions({
           <DropdownMenuContent align="end" portalProps={portalProps}>
             <DropdownMenuItem asChild>
               <a href={`https://github.com/${config.owner}/${config.repo}/blob/${encodeURIComponent(config.branch)}/${path}`} target="_blank">
-                View on GitHub
+                Открыть на GitHub
                 <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
               </a>
             </DropdownMenuItem>
@@ -126,13 +126,13 @@ export function FileOptions({
                   <DropdownMenuSeparator />
                   {showRename &&
                     <DropdownMenuItem onSelect={() => setIsRenameOpen(true)}>
-                      Rename
+                      Переименовать
                     </DropdownMenuItem>
                   }
                   {showDelete && (
                     <AlertDialogTrigger asChild>
                       <DropdownMenuItem variant="destructive">
-                        Delete
+                        Удалить
                       </DropdownMenuItem>
                     </AlertDialogTrigger>
                   )}
@@ -142,12 +142,12 @@ export function FileOptions({
           </DropdownMenuContent>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you sure you want to delete this file?</AlertDialogTitle>
-              <AlertDialogDescription>This will premanently delete &quot;{path}&quot;.</AlertDialogDescription>
+              <AlertDialogTitle>Вы уверены, что хотите удалить этот файл?</AlertDialogTitle>
+              <AlertDialogDescription>Файл &quot;{path}&quot; будет удалён безвозвратно.</AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleConfirmDelete}>Delete</AlertDialogAction>
+              <AlertDialogCancel>Отменить</AlertDialogCancel>
+              <AlertDialogAction onClick={handleConfirmDelete}>Удалить</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </DropdownMenu>

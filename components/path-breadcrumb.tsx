@@ -67,7 +67,7 @@ const PathBreadcrumb = ({
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center gap-1">
                     <BreadcrumbEllipsis className="h-4 w-4" />
-                    <span className="sr-only">Toggle menu</span>
+                    <span className="sr-only">Открыть меню</span>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start">
                     {breadcrumbDropdown.map((item) => (

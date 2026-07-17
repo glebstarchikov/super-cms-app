@@ -115,7 +115,7 @@ export function RepoSelect({
           <Skeleton className="h-5 w-24 text-left rounded" />
           <Skeleton className="h-5 w-24 text-left rounded" />
           <Button variant="outline" size="xs" className="ml-auto" disabled>
-            Open
+            Открыть
           </Button>
         </li>
       ))}
@@ -129,7 +129,7 @@ export function RepoSelect({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
-                <img className="size-6 rounded" src={`https://github.com/${selectedAccount?.login}.png`} alt={`${selectedAccount?.login}'s avatar`}/>
+                <img className="size-6 rounded" src={`https://github.com/${selectedAccount?.login}.png`} alt={`Аватар ${selectedAccount?.login}`}/>
                 <span className="mr-2">{selectedAccount?.login}</span>
                 <ChevronsUpDown className="ml-auto h-4 w-4 opacity-50"/>
               </Button>
@@ -143,7 +143,7 @@ export function RepoSelect({
                     if (onAccountSelect) onAccountSelect(account);
                   }}
                 >
-                  <img className="size-6 rounded" src={`https://github.com/${account.login}.png`} alt={`${account.login}'s avatar`}/>
+                  <img className="size-6 rounded" src={`https://github.com/${account.login}.png`} alt={`Аватар ${account.login}`}/>
                   <span className="truncate">{account.login}</span>
                 </DropdownMenuItem>
               ))}
@@ -151,7 +151,7 @@ export function RepoSelect({
                 <>
                   <DropdownMenuSeparator/>
                   <DropdownMenuItem asChild>
-                    <Link href="/api/github-app/install">Manage GitHub accounts</Link>
+                    <Link href="/api/github-app/install">Управление аккаунтами GitHub</Link>
                   </DropdownMenuItem>
                 </>
               }
@@ -167,18 +167,18 @@ export function RepoSelect({
                   href={selectedAccountInstallationUrl}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`Manage ${selectedAccount.login} installation settings on GitHub`}
+                  aria-label={`Настройки подключения ${selectedAccount.login} на GitHub`}
                 >
                   <Settings />
                 </a>
               </TooltipTrigger>
-              <TooltipContent sideOffset={6}>Manage GitHub App</TooltipContent>
+              <TooltipContent sideOffset={6}>Настроить GitHub App</TooltipContent>
             </Tooltip>
           )}
         </ButtonGroup>
         <div className="relative flex-1"> 
           <Input
-            placeholder="Search repositories by name"
+            placeholder="Поиск репозиториев по названию"
             className="pl-9"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
@@ -198,22 +198,22 @@ export function RepoSelect({
                   >{result.repo}</Link>
                   {result.private && <LockKeyhole className="h-3 w-3 opacity-50"/>}
                   {result.updatedAt &&
-                    <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(result.updatedAt))} ago</div>
+                    <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(result.updatedAt))} назад</div>
                   }
                   <Link
                     className={cn("ml-auto", buttonVariants({ variant: "outline", size: "xs"}))}
                     href={`/${result.owner}/${result.repo}/${result.defaultBranch ? encodeURIComponent(result.defaultBranch) : ""}`}
                   >
-                    Open
+                    Открыть
                   </Link>
                 </li>
               ))}
             </ul>
           : <Empty className="h-[206px] flex-none bg-accent p-4 md:p-6">
               <EmptyHeader>
-                <EmptyTitle>No projects</EmptyTitle>
+                <EmptyTitle>Нет проектов</EmptyTitle>
                 <EmptyDescription>
-                  No projects matched your search.
+                  По вашему запросу ничего не найдено.
                 </EmptyDescription>
               </EmptyHeader>
               {selectedAccountInstallationUrl && (
@@ -224,7 +224,7 @@ export function RepoSelect({
                     rel="noreferrer"
                     className={buttonVariants({ variant: "outline" })}
                   >
-                    Manage GitHub App
+                    Настроить GitHub App
                   </a>
                 </EmptyContent>
               )}

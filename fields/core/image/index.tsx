@@ -104,7 +104,7 @@ const schema = (field: Field, configObject?: Record<string, any>) => {
     if (field.required && isEmpty) {
       ctx.addIssue({
         code: ZodIssueCode.custom,
-        message: "This field is required",
+        message: "Обязательное поле",
       });
       // return; // Stop if empty element in array is considered critical
     }
@@ -112,7 +112,7 @@ const schema = (field: Field, configObject?: Record<string, any>) => {
     if (isMultiple && hasEmptyElementInArray) {
         ctx.addIssue({
             code: ZodIssueCode.custom,
-            message: "Image path cannot be empty within the list.",
+            message: "Путь к изображению в списке не может быть пустым.",
         });
        return;
     }
@@ -124,7 +124,7 @@ const schema = (field: Field, configObject?: Record<string, any>) => {
       if (new Set(normalizedPaths).size !== normalizedPaths.length) {
         ctx.addIssue({
           code: ZodIssueCode.custom,
-          message: "Image paths must be unique.",
+          message: "Пути к изображениям не должны повторяться.",
         });
         return;
       }
@@ -138,7 +138,7 @@ const schema = (field: Field, configObject?: Record<string, any>) => {
 
       // Path Prefix Check
       if (mediaInputPath && !path.startsWith(mediaInputPath)) {
-        ctx.addIssue({ code: ZodIssueCode.custom, message: `Path must start with the media directory: ${mediaInputPath}` });
+        ctx.addIssue({ code: ZodIssueCode.custom, message: `Путь должен начинаться с папки медиа: ${mediaInputPath}` });
       }
       
       // Extension Check
@@ -147,7 +147,7 @@ const schema = (field: Field, configObject?: Record<string, any>) => {
         if (!allowedExtensions.includes(fileExtension)) {
           ctx.addIssue({
             code: ZodIssueCode.custom,
-            message: `Invalid file extension '.${fileExtension}'. Allowed: ${allowedExtensions.map((e: string) => `.${e}`).join(', ')}`
+            message: `Недопустимое расширение файла «.${fileExtension}». Разрешены: ${allowedExtensions.map((e: string) => `.${e}`).join(', ')}`
           });
         }
       }

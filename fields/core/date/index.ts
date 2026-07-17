@@ -50,19 +50,19 @@ const schema = (field: Field) => {
     .refine(val => {
       if (!val) return !field.required;
       return isValid(parse(val, inputFormat, new Date()));
-    }, "Invalid date")
+    }, "Неверная дата")
     .refine(val => {
       if (!val || !field.options?.min) return true;
       const date = parse(val, inputFormat, new Date());
       const minDate = parse(field.options.min as string, inputFormat, new Date());
       return isValid(minDate) && !isBefore(date, minDate);
-    }, `Date must be after ${field.options?.min}`)
+    }, `Дата должна быть не раньше ${field.options?.min}`)
     .refine(val => {
       if (!val || !field.options?.max) return true;
       const date = parse(val, inputFormat, new Date());
       const maxDate = parse(field.options.max as string, inputFormat, new Date());
       return isValid(maxDate) && !isAfter(date, maxDate);
-    }, `Date must be before ${field.options?.max}`);
+    }, `Дата должна быть не позже ${field.options?.max}`);
   
   return zodSchema;
 };

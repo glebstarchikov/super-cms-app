@@ -28,11 +28,11 @@ const GithubAuthExpired = () => {
   return (
     <Empty className="absolute inset-0 border-0 rounded-none">
       <EmptyHeader>
-        <EmptyTitle>GitHub session expired</EmptyTitle>
-        <EmptyDescription>Your GitHub session has expired. You&apos;ll need to sign in again.</EmptyDescription>
+        <EmptyTitle>Сессия GitHub истекла</EmptyTitle>
+        <EmptyDescription>Ваша сессия GitHub истекла. Нужно войти снова.</EmptyDescription>
         <Button variant="ghost" onClick={handleSignInAgain} disabled={loading}>
           <ArrowLeft className="size-4" />
-          Sign in another way
+          Войти другим способом
           {loading && <Loader className="size-4 animate-spin" />}
         </Button>
       </EmptyHeader>

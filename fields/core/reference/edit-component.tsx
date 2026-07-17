@@ -223,7 +223,7 @@ const EditComponent = (props: any) => {
     : null;
   const placeholder = isReadonly
     ? undefined
-    : field.options?.placeholder || "Select...";
+    : field.options?.placeholder || "Выберите...";
 
   const handleValueChange = (nextValue: Option[] | Option | null) => {
     if (isReadonly) return;
@@ -279,11 +279,11 @@ const EditComponent = (props: any) => {
             </ComboboxValue>
           </ComboboxChips>
           <ComboboxContent anchor={anchor}>
-            {!isLoading && <ComboboxEmpty>No options found.</ComboboxEmpty>}
+            {!isLoading && <ComboboxEmpty>Ничего не найдено.</ComboboxEmpty>}
             {isLoading && (
               <div className="flex items-center justify-center gap-2 py-2 text-center text-sm text-muted-foreground">
                 <Loader className="h-4 w-4 animate-spin" />
-                Loading options...
+                Загрузка вариантов...
               </div>
             )}
             <ComboboxList>
@@ -305,11 +305,11 @@ const EditComponent = (props: any) => {
             readOnly={isReadonly}
           />
           <ComboboxContent>
-            {!isLoading && <ComboboxEmpty>No options found.</ComboboxEmpty>}
+            {!isLoading && <ComboboxEmpty>Ничего не найдено.</ComboboxEmpty>}
             {isLoading && (
               <div className="flex items-center justify-center gap-2 py-2 text-center text-sm text-muted-foreground">
                 <Loader className="h-4 w-4 animate-spin" />
-                Loading options...
+                Загрузка вариантов...
               </div>
             )}
             <ComboboxList>

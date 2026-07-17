@@ -113,7 +113,7 @@ const MediaDialog = forwardRef(({
       }
       <DialogContent className="w-full sm:max-w-screen-xl sm:w-[calc(100vw-6rem)] h-[calc(100vh-6rem)] grid-rows-[auto_minmax(0,1fr)_auto]">
         <DialogHeader>
-          <DialogTitle>Select images</DialogTitle>
+          <DialogTitle>Выбор изображений</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         
@@ -134,7 +134,7 @@ const MediaDialog = forwardRef(({
               onClick={() => void handleSubmit()} 
               disabled={selectedImages.length === 0 || isSubmitting}
             >
-              Select
+              Выбрать
               {isSubmitting ? <Loader className="animate-spin" /> : null}
             </Button>
           </DialogFooter>

@@ -62,12 +62,12 @@ export function RepoLatest() {
             className="truncate font-medium hover:underline"
             href={`/${visit.owner}/${visit.repo}/${encodeURIComponent(visit.branch)}`}
           >{visit.repo}</Link>
-          <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(visit.timestamp * 1000))} ago</div>
+          <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(visit.timestamp * 1000))} назад</div>
           <Link
             className={cn("ml-auto", buttonVariants({ variant: "outline", size: "xs"}))}
             href={`/${visit.owner}/${visit.repo}/${encodeURIComponent(visit.branch)}`}
           >
-            Open
+            Открыть
           </Link>
         </li>
       ))}

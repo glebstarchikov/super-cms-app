@@ -64,7 +64,7 @@ export function RepoDropdown({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="w-full h-15 justify-start px-3">
-            <img className="h-10 w-10 rounded-lg" src={`https://github.com/${owner}.png`} alt="Picture of the author" />
+            <img className="h-10 w-10 rounded-lg" src={`https://github.com/${owner}.png`} alt="Аватар владельца" />
             <div className="text-left overflow-hidden ml-3">
               <div className="font-medium truncate">{repo}</div>
               <div className="text-xs text-muted-foreground truncate">{config?.branch}</div>
@@ -75,12 +75,12 @@ export function RepoDropdown({
         <DropdownMenuContent align="end">
           <DropdownMenuItem asChild>
             <a href={`https://github.com/${owner}/${repo}`} target="_blank" onClick={onClick} >
-              View on GitHub
+              Открыть на GitHub
               <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
             </a>
           </DropdownMenuItem>
           <DropdownMenuSeparator/>
-          <DropdownMenuLabel className="w-40 text-xs text-muted-foreground font-medium">Branches{branchesCount && ` (${branchesCount})`}</DropdownMenuLabel>
+          <DropdownMenuLabel className="w-40 text-xs text-muted-foreground font-medium">Ветки{branchesCount && ` (${branchesCount})`}</DropdownMenuLabel>
             {displayBranches.length > 0 && (
               <>
                 <DropdownMenuRadioGroup value={config?.branch} onValueChange={handleBranchChange}>
@@ -94,12 +94,12 @@ export function RepoDropdown({
               </>
             )}
           <DialogTrigger asChild>
-            <DropdownMenuItem onClick={onClick}>Manage branches</DropdownMenuItem>
+            <DropdownMenuItem onClick={onClick}>Управление ветками</DropdownMenuItem>
           </DialogTrigger>
         </DropdownMenuContent>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Manage branches</DialogTitle>
+            <DialogTitle>Управление ветками</DialogTitle>
           </DialogHeader>
           <RepoBranches/>
         </DialogContent>

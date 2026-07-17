@@ -64,7 +64,7 @@ export function FileRename({
               newPath,
             }),
           });
-          const data = await requireApiSuccess<any>(response, "Failed to rename file");
+          const data = await requireApiSuccess<any>(response, "Не удалось переименовать файл");
 
           resolve(data);
         } catch (error) {
@@ -73,7 +73,7 @@ export function FileRename({
       });
 
       toast.promise(renamePromise, {
-        loading: `Renaming "${path}" to "${newPath}"`,
+        loading: `Переименование "${path}" в "${newPath}"`,
         success: (data: any) => {
           if (onRename) onRename(path, newPath);
           return data.message;
@@ -89,7 +89,7 @@ export function FileRename({
     <Dialog open={isOpen} onOpenChange={onOpenChange}>      
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Rename file</DialogTitle>
+          <DialogTitle>Переименовать файл</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <Input
@@ -98,10 +98,10 @@ export function FileRename({
         />
         <DialogFooter className="max-sm:gap-y-2">
           <DialogClose asChild>
-            <Button type="button" variant="outline">Cancel</Button>
+            <Button type="button" variant="outline">Отменить</Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type="submit" onClick={handleRename}>Rename</Button>
+            <Button type="submit" onClick={handleRename}>Переименовать</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

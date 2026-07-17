@@ -54,7 +54,7 @@ export function FilePath({
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            Rename
+            Переименовать
           </TooltipContent>
         </Tooltip>
       </div>

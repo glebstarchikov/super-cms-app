@@ -151,7 +151,7 @@ const getCollapsibleItemLabel = (
     );
   }
 
-  return `Item ${index !== undefined ? `#${index + 1}` : ""}`;
+  return `Элемент ${index !== undefined ? `#${index + 1}` : ""}`;
 };
 
 const hasCollapsibleSummary = (field: Field) =>
@@ -279,20 +279,20 @@ const ListItemRow = memo(function ListItemRow({
             </TooltipTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Remove this item?</AlertDialogTitle>
+                <AlertDialogTitle>Убрать этот элемент?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone.
+                  Это действие нельзя отменить.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel>Отменить</AlertDialogCancel>
                 <AlertDialogAction onClick={() => onRemoveConfirm(index)}>
-                  Remove
+                  Убрать
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
-          <TooltipContent>Remove item</TooltipContent>
+          <TooltipContent>Убрать элемент</TooltipContent>
         </Tooltip>
       )}
     </SortableItem>
@@ -475,13 +475,13 @@ const ListField = ({
               {field.required && (
                 <Badge variant="secondary" className="text-muted-foreground">
                   <Asterisk className="-ml-1 -mr-0.5" />
-                  Required
+                  Обязательно
                 </Badge>
               )}
               {hasExplicitReadonly(field) && (
                 <Badge variant="secondary" className="text-muted-foreground">
                   <Ban className="-ml-0.5" />
-                  Readonly
+                  Только чтение
                 </Badge>
               )}
               {isCollapsible &&
@@ -498,7 +498,7 @@ const ListField = ({
                       onClick={() => toggleAll(isAllExpanded)}
                     >
                       {isAllExpanded ? <ChevronsDownUp /> : <ChevronsUpDown />}
-                      {isAllExpanded ? "Collapse all" : "Expand all"}
+                      {isAllExpanded ? "Свернуть все" : "Развернуть все"}
                     </Button>
                   );
                 })()}
@@ -546,7 +546,7 @@ const ListField = ({
                   onClick={addItem}
                 >
                   <Plus />
-                  Add an item
+                  Добавить элемент
                 </Button>
               )}
             </div>
@@ -628,7 +628,7 @@ const BlocksField = forwardRef<HTMLDivElement, NestedFieldProps>(
       <div className="space-y-3" ref={ref as React.Ref<HTMLDivElement>}>
         {!selectedBlockDefinition ? (
           <div className="rounded-lg border p-4 space-y-4">
-            <div className="text-sm">Choose content block:</div>
+            <div className="text-sm">Выберите блок контента:</div>
             <div className="flex flex-wrap gap-2">
               {blocks.map((blockDef: Field) => (
                 <Button
@@ -704,26 +704,26 @@ const BlocksField = forwardRef<HTMLDivElement, NestedFieldProps>(
                       >
                         <AlertDialogHeader>
                           <AlertDialogTitle>
-                            Remove this block?
+                            Убрать этот блок?
                           </AlertDialogTitle>
                           <AlertDialogDescription>
-                            This action cannot be undone.
+                            Это действие нельзя отменить.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogCancel>Отменить</AlertDialogCancel>
                           <AlertDialogAction
                             onClick={() => {
                               handleRemoveBlock();
                               setIsRemoveBlockDialogOpen(false);
                             }}
                           >
-                            Remove
+                            Убрать
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
-                    <TooltipContent>Remove block</TooltipContent>
+                    <TooltipContent>Убрать блок</TooltipContent>
                   </Tooltip>
                 )}
               </Badge>
@@ -818,7 +818,7 @@ const ObjectField = forwardRef<HTMLDivElement, NestedFieldProps>(
         index={index}
       />
     ) : (
-      `Item ${index !== undefined ? `#${index + 1}` : ""}`
+      `Элемент ${index !== undefined ? `#${index + 1}` : ""}`
     );
 
     return (
@@ -923,13 +923,13 @@ const SingleField = ({
             {field.required && (
               <Badge variant="secondary" className="text-muted-foreground">
                 <Asterisk className="-ml-1 -mr-0.5" />
-                Required
+                Обязательно
               </Badge>
             )}
             {hasExplicitReadonly(field) && (
               <Badge variant="secondary" className="text-muted-foreground">
                 <Ban className="-ml-0.5" />
-                Readonly
+                Только чтение
               </Badge>
             )}
           </div>
@@ -979,7 +979,7 @@ const SingleField = ({
                       className="text-muted-foreground"
                     >
                       <Asterisk className="-ml-1 -mr-0.5" />
-                      Required
+                      Обязательно
                     </Badge>
                   )}
                   {hasExplicitReadonly(field) && (
@@ -988,7 +988,7 @@ const SingleField = ({
                       className="text-muted-foreground"
                     >
                       <Ban className="-ml-0.5" />
-                      Readonly
+                      Только чтение
                     </Badge>
                   )}
                 </div>
@@ -1146,7 +1146,7 @@ const EntryForm = ({
   );
 
   const handleError = () => {
-    toast.error("Please fix the errors before saving.", { duration: 5000 });
+    toast.error("Исправьте ошибки перед сохранением.", { duration: 5000 });
   };
 
   const handleFormSubmit = useCallback(
@@ -1167,7 +1167,7 @@ const EntryForm = ({
       >
         {filePath && (
           <div className="space-y-2 overflow-hidden">
-            <FormLabel>Filename</FormLabel>
+            <FormLabel>Имя файла</FormLabel>
             {filePath}
           </div>
         )}

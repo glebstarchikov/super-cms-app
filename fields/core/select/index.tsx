@@ -15,15 +15,15 @@ const schema = (field: Field) => {
 
   const optionSchema = z.string().refine(
     (value) => normalizedValues.includes(value),
-    { message: normalizedValues.length === 0 ? "This select field requires options.values" : "Invalid option" }
+    { message: normalizedValues.length === 0 ? "This select field requires options.values" : "Недопустимый вариант" }
   );
 
   if (field.options?.multiple) {
     let zodSchema = z.array(optionSchema);
 
-    if (field.required) zodSchema = zodSchema.min(1, "This field is required");
-    if (min !== undefined) zodSchema = zodSchema.min(min, `Select at least ${min} option${min === 1 ? "" : "s"}`);
-    if (max !== undefined) zodSchema = zodSchema.max(max, `Select at most ${max} option${max === 1 ? "" : "s"}`);
+    if (field.required) zodSchema = zodSchema.min(1, "Обязательное поле");
+    if (min !== undefined) zodSchema = zodSchema.min(min, `Выберите не менее ${min} вариант${min === 1 ? "" : "а"}`);
+    if (max !== undefined) zodSchema = zodSchema.max(max, `Выберите не более ${max} вариант${max === 1 ? "" : "а"}`);
 
     return z.preprocess(
       (val) => {

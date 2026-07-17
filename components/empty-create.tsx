@@ -22,7 +22,7 @@ const EmptyCreate = ({
   onCreate?: (path: string) => void;
 }) => {
   const { config } = useConfig();
-  if (!config) throw new Error(`Configuration not found.`);
+  if (!config) throw new Error(`Конфигурация не найдена.`);
 
   const router = useRouter();
   const [isCreating, setIsCreating] = useState(false);
@@ -34,7 +34,7 @@ const EmptyCreate = ({
 
   if (type === "settings") {
     path = ".pages.yml";
-    toCreate = "configuration file";
+    toCreate = "файл конфигурации";
     redirectTo = `${redirectTo}/configuration`;
   } else if (type === "content" || type === "media") {
     if (!name) throw new Error(`"name" is required.`);
@@ -43,12 +43,12 @@ const EmptyCreate = ({
 
     if (type === "media") {
       path = `${schema.input}/.gitkeep`;
-      toCreate = "media folder";
+      toCreate = "папку медиафайлов";
       redirectTo = `${redirectTo}/media/${schema.name}`;
     } else {
       if (schema.type === "file") {
         path = schema.path;
-        toCreate = "file";
+        toCreate = "файл";
         if (schema.list) {
           // Root-level list files must serialize as an array.
           content = [];
@@ -58,7 +58,7 @@ const EmptyCreate = ({
         }
       } else {
         path = `${schema.path}/.gitkeep`;
-        toCreate = "collection folder";
+        toCreate = "папку коллекции";
       }
       redirectTo = `${redirectTo}/${schema.type}/${schema.name}`;
     }
@@ -69,7 +69,7 @@ const EmptyCreate = ({
   const handleCreate = async () => {
     if (isCreating) return;
     setIsCreating(true);
-    const toastId = toast.loading(`Creating ${toCreate}...`);
+    const toastId = toast.loading(`Создаём ${toCreate}...`);
 
     try {
       const response = await fetch(`/api/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/files/${encodeURIComponent(normalizePath(path))}`, {
@@ -84,18 +84,18 @@ const EmptyCreate = ({
       });
       await requireApiSuccess<any>(
         response,
-        `Failed to create ${toCreate}`,
+        `Не удалось создать ${toCreate}`,
       );
 
-      toast.loading(`Opening ${toCreate}...`, { id: toastId });
+      toast.loading(`Открываем ${toCreate}...`, { id: toastId });
       onCreate?.(normalizePath(path));
       // Navigate immediately so destination route can render its loading skeleton.
       router.push(`${redirectTo}?empty-created`);
       router.refresh();
-      toast.success(`Created ${toCreate}. Opening...`, { id: toastId });
+      toast.success(`Создали ${toCreate}. Открываем...`, { id: toastId });
     } catch (error) {
       setIsCreating(false);
-      toast.error(error instanceof Error ? error.message : `Failed to create ${toCreate}.`, {
+      toast.error(error instanceof Error ? error.message : `Не удалось создать ${toCreate}.`, {
         id: toastId,
       });
     }
@@ -105,7 +105,7 @@ const EmptyCreate = ({
     <Button type="button" onClick={handleCreate} disabled={isCreating}>
       {isCreating ? (
         <span className="inline-flex items-center gap-x-2">
-          Creating...
+          Создание...
           <LucideLoader className="h-4 w-4 animate-spin" />
         </span>
       ) : children}
