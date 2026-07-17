@@ -285,39 +285,39 @@ export function CachePage({
         <div className="grid gap-4 lg:grid-cols-2">
           <Card className="h-full">
             <CardHeader>
-              <CardTitle className="text-base">Content</CardTitle>
+              <CardTitle className="text-base">Контент</CardTitle>
               <CardDescription>
-                Cached content (files and collections).
+                Кэшированный контент (файлы и коллекции).
               </CardDescription>
             </CardHeader>
             <CardContent className="text-sm flex-1">
               <div className="divide-y rounded-md border">
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Files cached</span>
+                  <span className="text-muted-foreground">Файлов в кэше</span>
                   <Skeleton className="h-4 w-10" />
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Folder caches</span>
+                  <span className="text-muted-foreground">Кэши папок</span>
                   <Skeleton className="h-4 w-10" />
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Cache SHA</span>
+                  <span className="text-muted-foreground">SHA кэша</span>
                   <Skeleton className="h-4 w-20" />
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Remote SHA</span>
+                  <span className="text-muted-foreground">SHA на сервере</span>
                   <Skeleton className="h-4 w-20" />
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Updated</span>
+                  <span className="text-muted-foreground">Обновлено</span>
                   <Skeleton className="h-4 w-20" />
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Status</span>
+                  <span className="text-muted-foreground">Статус</span>
                   <Skeleton className="h-4 w-16" />
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Last checked</span>
+                  <span className="text-muted-foreground">Последняя проверка</span>
                   <Skeleton className="h-4 w-20" />
                 </div>
               </div>
@@ -356,15 +356,15 @@ export function CachePage({
               <CardContent className="text-sm flex-1">
                 <div className="divide-y rounded-md border">
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Cache SHA</span>
+                    <span className="text-muted-foreground">SHA кэша</span>
                     <Skeleton className="h-4 w-20" />
                   </div>
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Version</span>
+                    <span className="text-muted-foreground">Версия</span>
                     <Skeleton className="h-4 w-12" />
                   </div>
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Last checked</span>
+                    <span className="text-muted-foreground">Последняя проверка</span>
                     <Skeleton className="h-4 w-20" />
                   </div>
                 </div>
@@ -401,7 +401,7 @@ export function CachePage({
               <CardContent className="text-sm flex-1">
                 <div className="divide-y rounded-md border">
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Entries</span>
+                    <span className="text-muted-foreground">Записи</span>
                     <Skeleton className="h-4 w-10" />
                   </div>
                 </div>
@@ -424,56 +424,56 @@ export function CachePage({
         <div className="grid gap-4 lg:grid-cols-2">
           <Card className="h-full">
             <CardHeader>
-              <CardTitle className="text-base">Content</CardTitle>
+              <CardTitle className="text-base">Контент</CardTitle>
               <CardDescription>
-                Cached content (files and collections).
+                Кэшированный контент (файлы и коллекции).
               </CardDescription>
             </CardHeader>
             <CardContent className="text-sm flex-1">
               <div className="divide-y rounded-md border">
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Files cached</span>
+                  <span className="text-muted-foreground">Файлов в кэше</span>
                   <span className="font-medium">{data.fileCount}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Folder caches</span>
+                  <span className="text-muted-foreground">Кэши папок</span>
                   <span className="font-medium">{data.folderMeta.length}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Cache SHA</span>
+                  <span className="text-muted-foreground">SHA кэша</span>
                   <span className="font-mono font-medium">
                     {shortSha(localSha)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Remote SHA</span>
+                  <span className="text-muted-foreground">SHA на сервере</span>
                   <span className="font-mono font-medium">
                     {shortSha(remoteSha)}
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Updated</span>
+                  <span className="text-muted-foreground">Обновлено</span>
                   <TimeWithTooltip value={data.fileMeta?.updatedAt} />
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Status</span>
+                  <span className="text-muted-foreground">Статус</span>
                   <span className="font-medium capitalize">
-                    {data.fileMeta?.status || "unknown"}
+                    {data.fileMeta?.status || "неизвестно"}
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <span className="text-muted-foreground">Last checked</span>
+                  <span className="text-muted-foreground">Последняя проверка</span>
                   <TimeWithTooltip value={data.fileMeta?.lastCheckedAt} />
                 </div>
               </div>
               {data.fileMeta?.status === "error" && (
                 <div className="mt-4 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-3 text-sm">
                   <p className="font-medium text-destructive">
-                    Unknown cache error
+                    Неизвестная ошибка кэша
                   </p>
                   <p className="mt-1 text-muted-foreground">
-                    Try refreshing the cache first. If the issue persists, clear
-                    the cache and refresh it again.
+                    Сначала попробуйте обновить кэш. Если проблема не исчезнет,
+                    очистите кэш и обновите его ещё раз.
                   </p>
                 </div>
               )}
@@ -481,35 +481,35 @@ export function CachePage({
             <CardFooter className="flex justify-end">
               <div className="inline-flex items-center">
                 <ConfirmActionButton
-                  label="Refresh cache"
-                  title="Refresh file cache?"
-                  description="This will check remote SHA and reconcile file cache if needed."
-                  confirmLabel="Refresh"
+                  label="Обновить кэш"
+                  title="Обновить кэш файлов?"
+                  description="Будет проверен SHA на сервере и при необходимости синхронизирован кэш файлов."
+                  confirmLabel="Обновить"
                   variant="outline"
                   size="icon-sm"
                   iconOnly
-                  tooltip="Refresh cache"
+                  tooltip="Обновить кэш"
                   icon={<RefreshCcw className="size-4" />}
                   className="rounded-r-none"
                   disabled={actionLoading != null || !canReconcile}
                   onConfirm={async () =>
-                    runAction("reconcile-file-cache", "File cache refreshed")
+                    runAction("reconcile-file-cache", "Кэш файлов обновлён")
                   }
                 />
                 <ConfirmActionButton
-                  label="Clear cache"
-                  title="Clear file cache?"
-                  description="This will delete cached file entries and reset file cache metadata."
-                  confirmLabel="Clear"
+                  label="Очистить кэш"
+                  title="Очистить кэш файлов?"
+                  description="Будут удалены записи кэша файлов и сброшены метаданные кэша."
+                  confirmLabel="Очистить"
                   variant="outline"
                   size="icon-sm"
                   iconOnly
-                  tooltip="Clear cache"
+                  tooltip="Очистить кэш"
                   icon={<Trash2 className="size-4" />}
                   className="rounded-l-none border-l-0"
                   disabled={actionLoading != null}
                   onConfirm={async () =>
-                    runAction("clear-file-cache", "File cache cleared")
+                    runAction("clear-file-cache", "Кэш файлов очищен")
                   }
                 />
               </div>
@@ -528,19 +528,19 @@ export function CachePage({
               <CardContent className="text-sm flex-1">
                 <div className="divide-y rounded-md border">
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Cache SHA</span>
+                    <span className="text-muted-foreground">SHA кэша</span>
                     <span className="font-mono font-medium">
                       {shortSha(data.config?.sha)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Version</span>
+                    <span className="text-muted-foreground">Версия</span>
                     <span className="font-medium">
                       {data.config?.version || "-"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Last checked</span>
+                    <span className="text-muted-foreground">Последняя проверка</span>
                     <TimeWithTooltip value={data.config?.lastCheckedAt} />
                   </div>
                 </div>
@@ -548,35 +548,35 @@ export function CachePage({
               <CardFooter className="flex justify-end">
                 <div className="inline-flex items-center">
                   <ConfirmActionButton
-                    label="Refresh cache"
-                    title="Refresh config cache?"
-                    description="This will refetch and revalidate the cached configuration."
-                    confirmLabel="Refresh"
+                    label="Обновить кэш"
+                    title="Обновить кэш конфигурации?"
+                    description="Конфигурация будет загружена заново и проверена."
+                    confirmLabel="Обновить"
                     variant="outline"
                     size="icon-sm"
                     iconOnly
-                    tooltip="Refresh cache"
+                    tooltip="Обновить кэш"
                     icon={<RefreshCcw className="size-4" />}
                     className="rounded-r-none"
                     disabled={actionLoading != null}
                     onConfirm={async () =>
-                      runAction("refresh-config", "Config cache refreshed")
+                      runAction("refresh-config", "Кэш конфигурации обновлён")
                     }
                   />
                   <ConfirmActionButton
-                    label="Clear cache"
-                    title="Clear config cache?"
-                    description="This will remove cached config for this repository/branch."
-                    confirmLabel="Clear"
+                    label="Очистить кэш"
+                    title="Очистить кэш конфигурации?"
+                    description="Будет удалён кэш конфигурации для этого репозитория и ветки."
+                    confirmLabel="Очистить"
                     variant="outline"
                     size="icon-sm"
                     iconOnly
-                    tooltip="Clear cache"
+                    tooltip="Очистить кэш"
                     icon={<Trash2 className="size-4" />}
                     className="rounded-l-none border-l-0"
                     disabled={actionLoading != null}
                     onConfirm={async () =>
-                      runAction("clear-config-cache", "Config cache cleared")
+                      runAction("clear-config-cache", "Кэш конфигурации очищен")
                     }
                   />
                 </div>
@@ -593,27 +593,27 @@ export function CachePage({
               <CardContent className="text-sm flex-1">
                 <div className="divide-y rounded-md border">
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
-                    <span className="text-muted-foreground">Entries</span>
+                    <span className="text-muted-foreground">Записи</span>
                     <span className="font-medium">{data.permissionCount}</span>
                   </div>
                 </div>
               </CardContent>
               <CardFooter className="justify-end">
                 <ConfirmActionButton
-                  label="Clear cache"
-                  title="Clear permission cache?"
-                  description="This will remove cached permission entries for this repository."
-                  confirmLabel="Clear"
+                  label="Очистить кэш"
+                  title="Очистить кэш прав доступа?"
+                  description="Будут удалены записи кэша прав доступа для этого репозитория."
+                  confirmLabel="Очистить"
                   variant="outline"
                   size="icon-sm"
                   iconOnly
-                  tooltip="Clear cache"
+                  tooltip="Очистить кэш"
                   icon={<Trash2 className="size-4" />}
                   disabled={actionLoading != null}
                   onConfirm={async () =>
                     runAction(
                       "clear-permission-cache",
-                      "Permission cache cleared",
+                      "Кэш прав доступа очищен",
                     )
                   }
                 />

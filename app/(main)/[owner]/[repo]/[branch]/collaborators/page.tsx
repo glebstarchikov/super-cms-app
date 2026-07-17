@@ -15,8 +15,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
-          <EmptyDescription>Only GitHub users can manage collaborators.</EmptyDescription>
+          <EmptyTitle>Доступ запрещён</EmptyTitle>
+          <EmptyDescription>Управлять участниками могут только пользователи GitHub.</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <div className="max-w-screen-sm mx-auto flex-1 flex flex-col h-full">
       <DocumentTitle
-        title={formatRepoBranchTitle("Collaborators", config.owner, config.repo, config.branch)}
+        title={formatRepoBranchTitle("Участники", config.owner, config.repo, config.branch)}
       />
       <div className="flex flex-col relative flex-1">
         <Collaborators owner={config.owner} repo={config.repo} branch={config?.branch}/>

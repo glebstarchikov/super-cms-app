@@ -33,22 +33,22 @@ export default function Page() {
       hasGithubIdentity(user)
         ? <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Configuration unavailable</EmptyTitle>
-              <EmptyDescription>This repository is not configured, and configuration access is disabled here. Edit &quot;.pages.yml&quot; on GitHub if you think this is a mistake.</EmptyDescription>
+              <EmptyTitle>Конфигурация недоступна</EmptyTitle>
+              <EmptyDescription>Этот репозиторий не настроен, а доступ к конфигурации здесь отключён. Если вы считаете это ошибкой, измените &quot;.pages.yml&quot; на GitHub.</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link
                 className={buttonVariants({ variant: "default" })}
                 href={`https://github.com/${config?.owner}/${config?.repo}/edit/${encodeURIComponent(config!.branch)}/.pages.yml`}
               >
-                Edit configuration on GitHub
+                Изменить конфигурацию на GitHub
               </Link>
             </EmptyContent>
           </Empty>
         : <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Repository not configured</EmptyTitle>
-              <EmptyDescription>This repository does not have a &quot;.pages.yml&quot; file yet. Ask a GitHub admin to initialize the configuration first.</EmptyDescription>
+              <EmptyTitle>Репозиторий не настроен</EmptyTitle>
+              <EmptyDescription>В этом репозитории пока нет файла &quot;.pages.yml&quot;. Попросите администратора GitHub сначала создать конфигурацию.</EmptyDescription>
             </EmptyHeader>
           </Empty>
     )

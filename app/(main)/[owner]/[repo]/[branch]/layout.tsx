@@ -63,12 +63,12 @@ export default async function Layout({
         errorMessage = (
           <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Branch not found</EmptyTitle>
-              <EmptyDescription>{`The branch "${decodedBranch}" could not be found. It may have been removed or renamed.`}</EmptyDescription>
+              <EmptyTitle>Ветка не найдена</EmptyTitle>
+              <EmptyDescription>{`Ветка «${decodedBranch}» не найдена. Возможно, она была удалена или переименована.`}</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link className={buttonVariants({ variant: "default" })} href={`/${owner}/${repo}`}>
-                Open default branch
+                Открыть ветку по умолчанию
               </Link>
             </EmptyContent>
           </Empty>
@@ -78,12 +78,12 @@ export default async function Layout({
       errorMessage = (
         <Empty className="absolute inset-0 border-0 rounded-none">
           <EmptyHeader>
-            <EmptyTitle>Access denied</EmptyTitle>
-            <EmptyDescription>You do not have permission to access this repository.</EmptyDescription>
+            <EmptyTitle>Доступ запрещён</EmptyTitle>
+            <EmptyDescription>У вас нет доступа к этому репозиторию.</EmptyDescription>
           </EmptyHeader>
           <EmptyContent>
             <Link className={buttonVariants({ variant: "default" })} href="/">
-              Choose another repository
+              Выбрать другой репозиторий
             </Link>
           </EmptyContent>
         </Empty>

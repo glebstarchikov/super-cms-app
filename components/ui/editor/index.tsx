@@ -233,14 +233,14 @@ const normalizeMarkdownTables = (markdown: string): string =>
     .join("\n");
 
 const blockOptions: Array<{ value: BlockType; label: string }> = [
-  { value: "paragraph", label: "Text" },
-  { value: "heading1", label: "Heading 1" },
-  { value: "heading2", label: "Heading 2" },
-  { value: "heading3", label: "Heading 3" },
-  { value: "bulletList", label: "Bulleted list" },
-  { value: "orderedList", label: "Numbered list" },
-  { value: "blockquote", label: "Quote" },
-  { value: "codeBlock", label: "Code block" },
+  { value: "paragraph", label: "Текст" },
+  { value: "heading1", label: "Заголовок 1" },
+  { value: "heading2", label: "Заголовок 2" },
+  { value: "heading3", label: "Заголовок 3" },
+  { value: "bulletList", label: "Маркированный список" },
+  { value: "orderedList", label: "Нумерованный список" },
+  { value: "blockquote", label: "Цитата" },
+  { value: "codeBlock", label: "Блок кода" },
 ];
 
 export function Editor({
@@ -767,42 +767,42 @@ export function Editor({
 
   const inlineActions: MenuAction[] = [
     {
-      label: "Bold",
+      label: "Полужирный",
       icon: Bold,
       isActive: () => activeState.bold,
       run: () => editor.chain().focus().toggleBold().run(),
       toggle: true,
     },
     {
-      label: "Italic",
+      label: "Курсив",
       icon: Italic,
       isActive: () => activeState.italic,
       run: () => editor.chain().focus().toggleItalic().run(),
       toggle: true,
     },
     {
-      label: "Underline",
+      label: "Подчёркнутый",
       icon: UnderlineIcon,
       isActive: () => activeState.underline,
       run: () => editor.chain().focus().toggleUnderline().run(),
       toggle: true,
     },
     {
-      label: "Strikethrough",
+      label: "Зачёркнутый",
       icon: Strikethrough,
       isActive: () => activeState.strike,
       run: () => editor.chain().focus().toggleStrike().run(),
       toggle: true,
     },
     {
-      label: "Code",
+      label: "Код",
       icon: Code,
       isActive: () => activeState.code,
       run: () => editor.chain().focus().toggleCode().run(),
       toggle: true,
     },
     {
-      label: "Remove formatting",
+      label: "Убрать форматирование",
       icon: RemoveFormatting,
       run: () => editor.chain().focus().unsetAllMarks().clearNodes().run(),
     },
@@ -973,7 +973,7 @@ export function Editor({
               }),
             )}
             {renderIconButton({
-              label: "Link",
+              label: "Ссылка",
               icon: LinkIcon,
               onClick: openLinkInput,
               disabled,

@@ -198,14 +198,14 @@ export function Collaborators({
           status: string;
           data: Collaborator[];
           message?: string;
-        }>(response, "Failed to fetch collaborators");
+        }>(response, "Не удалось загрузить участников");
 
         setCollaborators(data.data);
       } catch (err: unknown) {
         if (err instanceof DOMException && err.name === "AbortError") return;
         console.error(err);
         setError(
-          err instanceof Error ? err.message : "Failed to fetch collaborators",
+          err instanceof Error ? err.message : "Не удалось загрузить участников",
         );
       } finally {
         // In React Strict Mode, an aborted first pass can race with the active request.
@@ -483,7 +483,7 @@ export function Collaborators({
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel>Отменить</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={() => {
                     if (!collaboratorToRemove) return;

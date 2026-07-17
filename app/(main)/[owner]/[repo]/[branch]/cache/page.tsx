@@ -18,8 +18,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
-          <EmptyDescription>Only GitHub users can manage the cache.</EmptyDescription>
+          <EmptyTitle>Доступ запрещён</EmptyTitle>
+          <EmptyDescription>Управлять кэшем могут только пользователи GitHub.</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
@@ -29,8 +29,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Cache disabled</EmptyTitle>
-          <EmptyDescription>Enable the cache in &quot;.pages.yml&quot; by setting &quot;settings.cache: true&quot;.</EmptyDescription>
+          <EmptyTitle>Кэш отключён</EmptyTitle>
+          <EmptyDescription>Включите кэш в &quot;.pages.yml&quot;, задав &quot;settings.cache: true&quot;.</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
@@ -39,7 +39,7 @@ export default function Page() {
   return (
     <>
       <DocumentTitle
-        title={formatRepoBranchTitle("Cache", config.owner, config.repo, config.branch)}
+        title={formatRepoBranchTitle("Кэш", config.owner, config.repo, config.branch)}
       />
       <CachePage owner={config.owner} repo={config.repo} branch={config.branch} />
     </>

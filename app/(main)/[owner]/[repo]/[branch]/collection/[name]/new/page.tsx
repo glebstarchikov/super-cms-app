@@ -30,9 +30,9 @@ export default function Page({
   return (
     <>
       <DocumentTitle
-        title={formatRepoBranchTitle(`New entry | ${displayName}`, config.owner, config.repo, config.branch)}
+        title={formatRepoBranchTitle(`Новая запись | ${displayName}`, config.owner, config.repo, config.branch)}
       />
-      <Entry name={schemaName} title="New entry" parent={parent}/>
+      <Entry name={schemaName} title="Новая запись" parent={parent}/>
     </>
   );
 }

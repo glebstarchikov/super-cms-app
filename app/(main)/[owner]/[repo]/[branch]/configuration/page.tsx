@@ -35,9 +35,9 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
+          <EmptyTitle>Доступ запрещён</EmptyTitle>
           <EmptyDescription>
-            Only GitHub users can manage repository configuration.
+            Управлять конфигурацией репозитория могут только пользователи GitHub.
           </EmptyDescription>
         </EmptyHeader>
       </Empty>
@@ -49,7 +49,7 @@ export default function Page() {
       {config && (
         <DocumentTitle
           title={formatRepoBranchTitle(
-            "Configuration",
+            "Конфигурация",
             config.owner,
             config.repo,
             config.branch,
@@ -59,7 +59,7 @@ export default function Page() {
       <Entry
         path=".pages.yml"
         onSave={handleSave}
-        title="Configuration"
+        title="Конфигурация"
         headerMeta={
           <Tooltip>
             <TooltipTrigger asChild>
@@ -75,11 +75,11 @@ export default function Page() {
                   rel="noreferrer"
                 >
                   <BookText />
-                  <span className="sr-only">Configuration docs</span>
+                  <span className="sr-only">Документация по конфигурации</span>
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>View docs</TooltipContent>
+            <TooltipContent>Документация</TooltipContent>
           </Tooltip>
         }
       />

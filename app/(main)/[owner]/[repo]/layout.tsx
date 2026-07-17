@@ -40,8 +40,8 @@ export default async function Layout({
       return(
         <Empty className="absolute inset-0 border-0 rounded-none">
           <EmptyHeader>
-            <EmptyTitle>Empty repository</EmptyTitle>
-            <EmptyDescription>Create a branch and add a &quot;.pages.yml&quot; file to configure this repository.</EmptyDescription>
+            <EmptyTitle>Пустой репозиторий</EmptyTitle>
+            <EmptyDescription>Создайте ветку и добавьте файл &quot;.pages.yml&quot;, чтобы настроить этот репозиторий.</EmptyDescription>
           </EmptyHeader>
           <EmptyContent>
             <Link className={buttonVariants({ variant: "default" })} href="/">
@@ -69,12 +69,12 @@ export default async function Layout({
         return(
           <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Repository not found</EmptyTitle>
-              <EmptyDescription>It may have been removed, renamed, or the URL may be incorrect.</EmptyDescription>
+              <EmptyTitle>Репозиторий не найден</EmptyTitle>
+              <EmptyDescription>Возможно, он был удалён, переименован или указан неверный адрес.</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link className={buttonVariants({ variant: "default" })} href="/">
-                Choose another repository
+                Выбрать другой репозиторий
               </Link>
             </EmptyContent>
           </Empty>
@@ -83,12 +83,12 @@ export default async function Layout({
         return(
           <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Access denied</EmptyTitle>
-              <EmptyDescription>You do not have permission to access this repository.</EmptyDescription>
+              <EmptyTitle>Доступ запрещён</EmptyTitle>
+              <EmptyDescription>У вас нет доступа к этому репозиторию.</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link className={buttonVariants({ variant: "default" })} href="/">
-                Choose another repository
+                Выбрать другой репозиторий
               </Link>
             </EmptyContent>
           </Empty>

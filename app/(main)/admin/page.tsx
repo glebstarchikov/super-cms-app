@@ -74,10 +74,10 @@ const formatTimeAgoLabel = (
   const diffHours = Math.floor(diffMinutes / 60);
   const diffDays = Math.floor(diffHours / 24);
 
-  if (diffMinutes < 1) return "just now";
-  if (diffMinutes < 60) return `${diffMinutes}m ago`;
-  if (diffHours < 24) return `${diffHours}h ago`;
-  if (diffDays < 30) return `${diffDays}d ago`;
+  if (diffMinutes < 1) return "только что";
+  if (diffMinutes < 60) return `${diffMinutes} мин назад`;
+  if (diffHours < 24) return `${diffHours} ч назад`;
+  if (diffDays < 30) return `${diffDays} дн назад`;
 
   return date.toLocaleDateString();
 };
@@ -175,7 +175,7 @@ export default async function Page({
 
   return (
     <MainRootLayout>
-      <DocumentTitle title="Admin" />
+      <DocumentTitle title="Администрирование" />
       <div className="max-w-screen-lg mx-auto p-4 md:p-6 space-y-6">
         <Link
           className={cn(
@@ -185,37 +185,37 @@ export default async function Page({
           href="/"
         >
           <ArrowLeft />
-          Go home
+          На главную
         </Link>
 
         <header>
           <h1 className="font-semibold tracking-tight text-lg md:text-2xl">
-            Admin
+            Администрирование
           </h1>
         </header>
 
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Overview</CardTitle>
-              <CardDescription>High-level installation metrics.</CardDescription>
+              <CardTitle>Обзор</CardTitle>
+              <CardDescription>Основные показатели установки.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-4">
                 <div className="md:pr-4 md:border-r">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Users</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">Пользователи</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(userCount?.count ?? 0)}</div>
                 </div>
                 <div className="md:px-4 md:border-r">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Installs</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">Установки</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(installCount?.count ?? 0)}</div>
                 </div>
                 <div className="md:px-4 md:border-r">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Configured repos</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">Настроенные репозитории</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(repoCount?.count ?? 0)}</div>
                 </div>
                 <div className="md:pl-4">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Cached files</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">Файлов в кэше</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(cacheFileCount?.count ?? 0)}</div>
                 </div>
               </div>
@@ -224,9 +224,9 @@ export default async function Page({
 
           <Card>
             <CardHeader>
-              <CardTitle>Users</CardTitle>
+              <CardTitle>Пользователи</CardTitle>
               <CardDescription>
-                Search and revoke active sessions for individual users or everyone at once.
+                Поиск пользователей и завершение активных сессий по отдельности или для всех сразу.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -234,10 +234,10 @@ export default async function Page({
                 <AdminUserSearch initialQuery={query} />
                 <AdminConfirmActionButton
                   action={logoutAllUsers}
-                  label="Log out all users"
-                  title="Log out all users?"
-                  description="This will revoke every active session and redirect everyone to sign in again."
-                  confirmLabel="Log out all"
+                  label="Завершить все сессии"
+                  title="Завершить все сессии?"
+                  description="Все активные сессии будут завершены, и всем потребуется войти заново."
+                  confirmLabel="Завершить все"
                   variant="outline"
                   size="sm"
                 />
@@ -246,11 +246,11 @@ export default async function Page({
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-10 min-w-10" />
-                    <TableHead>Name</TableHead>
+                    <TableHead>Имя</TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>GitHub</TableHead>
-                    <TableHead className="w-24 min-w-24">Created</TableHead>
-                    <TableHead className="w-24 min-w-24">Updated</TableHead>
+                    <TableHead className="w-24 min-w-24">Создан</TableHead>
+                    <TableHead className="w-24 min-w-24">Обновлён</TableHead>
                     <TableHead className="w-12 min-w-12" />
                   </TableRow>
                 </TableHeader>
@@ -314,7 +314,7 @@ export default async function Page({
                   ) : (
                     <TableRow>
                       <TableCell colSpan={7} className="text-center text-muted-foreground">
-                        No users found.
+                        Пользователи не найдены.
                       </TableCell>
                     </TableRow>
                   )}
@@ -322,7 +322,7 @@ export default async function Page({
               </Table>
               <div className="mt-4 flex items-center justify-between gap-4 text-sm text-muted-foreground">
                 <div>
-                  Showing {users.length} of {filteredUserCount?.count ?? 0} users
+                  Показано {users.length} из {filteredUserCount?.count ?? 0}
                 </div>
                 <Pagination className="mx-0 w-auto justify-end">
                   <PaginationContent>
@@ -336,7 +336,7 @@ export default async function Page({
                     </PaginationItem>
                     <PaginationItem>
                       <span className="px-2 text-xs">
-                        Page {safeCurrentPage} of {totalUserPages}
+                        Страница {safeCurrentPage} из {totalUserPages}
                       </span>
                     </PaginationItem>
                     <PaginationItem>
@@ -355,35 +355,35 @@ export default async function Page({
 
           <Card>
             <CardHeader>
-              <CardTitle>Cache</CardTitle>
+              <CardTitle>Кэш</CardTitle>
               <CardDescription>
-                Global cache state across files, config, metadata, and permission checks.
+                Общее состояние кэша: файлы, конфигурация, метаданные и проверки прав доступа.
               </CardDescription>
             </CardHeader>
             <CardContent className="text-sm flex-1">
               <div className="grid rounded-md border md:grid-cols-2">
                 <div className="flex items-center justify-between gap-3 px-3 py-2 md:border-r md:border-b">
-                  <span className="text-muted-foreground">Cached files</span>
+                  <span className="text-muted-foreground">Файлов в кэше</span>
                   <span className="font-medium">{cacheFileCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-r md:border-t-0 md:border-b">
-                  <span className="text-muted-foreground">Cache metadata rows</span>
+                  <span className="text-muted-foreground">Строк метаданных кэша</span>
                   <span className="font-medium">{cacheMetaCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-r md:border-t-0 md:border-b">
-                  <span className="text-muted-foreground">Permission cache rows</span>
+                  <span className="text-muted-foreground">Строк кэша прав доступа</span>
                   <span className="font-medium">{cachePermissionCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-t-0 md:border-b">
-                  <span className="text-muted-foreground">Collaborator rows</span>
+                  <span className="text-muted-foreground">Строк участников</span>
                   <span className="font-medium">{collaboratorCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-r md:border-t-0">
-                  <span className="text-muted-foreground">Verified users</span>
+                  <span className="text-muted-foreground">Подтверждённые пользователи</span>
                   <span className="font-medium">{verifiedUserCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-t-0">
-                  <span className="text-muted-foreground">GitHub identities</span>
+                  <span className="text-muted-foreground">Аккаунты GitHub</span>
                   <span className="font-medium">{githubUserCount?.count ?? 0}</span>
                 </div>
               </div>
@@ -391,10 +391,10 @@ export default async function Page({
             <CardFooter className="flex justify-end">
               <AdminConfirmActionButton
                 action={resetGlobalCache}
-                label="Reset cache"
-                title="Reset cache?"
-                description="This will clear cached files, cached config, cache metadata, and permission cache."
-                confirmLabel="Reset"
+                label="Сбросить кэш"
+                title="Сбросить кэш?"
+                description="Будут очищены кэш файлов, кэш конфигурации, метаданные кэша и кэш прав доступа."
+                confirmLabel="Сбросить"
                 variant="outline"
                 size="sm"
                 icon={<RefreshCcw className="size-4" />}

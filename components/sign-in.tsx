@@ -33,7 +33,7 @@ export function SignIn() {
   const getErrorMessage = (value: string) => {
     if (value.toLowerCase() !== "unable_to_get_user_info") return value;
     return [
-      "GitHub denied profile access. Re-authorize Pages CMS in GitHub Settings > Applications > Authorized GitHub Apps / Authorized OAuth Apps, then try again.",
+      "GitHub не предоставил доступ к профилю. Переавторизуйте Plainly в GitHub: Settings > Applications > Authorized GitHub Apps / Authorized OAuth Apps, затем попробуйте снова.",
       "https://github.com/settings/applications",
     ].join(" ");
   };
@@ -68,9 +68,9 @@ export function SignIn() {
       }
 
       setSubmittingMethod(null);
-      toast.error("Could not start GitHub sign-in. Please try again.");
+      toast.error("Не удалось начать вход через GitHub. Попробуйте снова.");
     } catch (error: any) {
-      toast.error(error?.message || "Could not start GitHub sign-in.");
+      toast.error(error?.message || "Не удалось начать вход через GitHub.");
       setSubmittingMethod(null);
     }
   };
@@ -78,7 +78,7 @@ export function SignIn() {
   const handleEmailSignIn = async () => {
     const normalizedEmail = email.trim().toLowerCase();
     if (!normalizedEmail) {
-      toast.error("Invalid email");
+      toast.error("Неверная почта");
       return;
     }
 
@@ -97,7 +97,7 @@ export function SignIn() {
       setEmail(normalizedEmail);
       setOtp("");
       setStep("otp");
-      toast.success("We sent you a sign-in code.", { duration: 8000 });
+      toast.success("Мы отправили вам код для входа.", { duration: 8000 });
     } finally {
       setSubmittingMethod(null);
     }
@@ -105,7 +105,7 @@ export function SignIn() {
 
   const handleOtpSignIn = async () => {
     if (otp.length !== 6) {
-      toast.error("Enter the 6-digit code.");
+      toast.error("Введите код из 6 цифр.");
       return;
     }
 

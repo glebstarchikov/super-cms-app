@@ -39,7 +39,7 @@ export default async function Page() {
 
   return (
     <MainRootLayout>
-      <DocumentTitle title="Settings" />
+      <DocumentTitle title="Настройки" />
       <div className="max-w-screen-sm mx-auto p-4 md:p-6 space-y-6">
         <Link
           className={cn(
@@ -49,11 +49,11 @@ export default async function Page() {
           href="/"
         >
           <ArrowLeft />
-          Go home
+          На главную
         </Link>
         <header className="flex items-center mb-6">
           <h1 className="font-semibold tracking-tight text-lg md:text-2xl">
-            Settings
+            Настройки
           </h1>
         </header>
         <div className="flex flex-col relative flex-1 space-y-6">
@@ -65,9 +65,9 @@ export default async function Page() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Authentication</CardTitle>
+              <CardTitle>Вход</CardTitle>
               <CardDescription>
-                Your sign-in methods and linked identity providers.
+                Способы входа и привязанные аккаунты.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -84,10 +84,10 @@ export default async function Page() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base md:text-lg">
-                  Installations
+                  Установки
                 </CardTitle>
                 <CardDescription>
-                  Manage the accounts the Github application is installed on.
+                  Управляйте аккаунтами, где установлено приложение GitHub.
                 </CardDescription>
               </CardHeader>
               <CardContent>

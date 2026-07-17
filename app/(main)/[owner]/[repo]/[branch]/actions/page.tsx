@@ -18,8 +18,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
-          <EmptyDescription>Only GitHub users can view action history.</EmptyDescription>
+          <EmptyTitle>Доступ запрещён</EmptyTitle>
+          <EmptyDescription>Историю действий могут смотреть только пользователи GitHub.</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
@@ -65,7 +65,7 @@ export default function Page() {
   return (
     <>
       <DocumentTitle
-        title={formatRepoBranchTitle("Actions", config.owner, config.repo, config.branch)}
+        title={formatRepoBranchTitle("Действия", config.owner, config.repo, config.branch)}
       />
       <div className="flex w-full flex-1 flex-col">
         <ActionsPage

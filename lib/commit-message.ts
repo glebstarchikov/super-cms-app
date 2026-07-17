@@ -5,10 +5,10 @@ type CommitTemplates = Partial<Record<CommitAction, string>>;
 type CommitIdentity = "app" | "user";
 
 const defaultCommitTemplates: Record<CommitAction, string> = {
-  create: "Create {path} (via Pages CMS)",
-  update: "Update {path} (via Pages CMS)",
-  delete: "Delete {path} (via Pages CMS)",
-  rename: "Rename {oldPath} to {newPath} (via Pages CMS)",
+  create: "Create {path} (via Plainly)",
+  update: "Update {path} (via Plainly)",
+  delete: "Delete {path} (via Plainly)",
+  rename: "Rename {oldPath} to {newPath} (via Plainly)",
 };
 
 const getCommitTemplates = (configObject?: Record<string, any>): CommitTemplates => {

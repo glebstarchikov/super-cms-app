@@ -48,7 +48,7 @@ const assertRepoInInstallation = async (
       installationRepo.name?.toLowerCase() === repo.toLowerCase()
     )
   );
-  if (!isInstalledForRepo) throw new Error(`"${owner}/${repo}" is not part of your Pages CMS installation.`);
+  if (!isInstalledForRepo) throw new Error(`«${owner}/${repo}» не входит в вашу установку Plainly.`);
 
   return {
     repoAccess,
@@ -116,7 +116,7 @@ const handleAddCollaborator = async (prevState: any, formData: FormData) => {
       headers: await headers(),
     });
     const user = session?.user;
-		if (!user) throw new Error("You must be signed in with GitHub to invite collaborators.");
+		if (!user) throw new Error("Чтобы приглашать участников, войдите через GitHub.");
 
 		// TODO: add support for branches
 		const ownerAndRepoValidation = z.object({
@@ -126,13 +126,13 @@ const handleAddCollaborator = async (prevState: any, formData: FormData) => {
 			owner: formData.get("owner"),
 			repo: formData.get("repo")
 		});
-		if (!ownerAndRepoValidation.success) throw new Error ("Invalid owner and/or repo");
+		if (!ownerAndRepoValidation.success) throw new Error ("Неверный владелец или репозиторий");
 
 		const owner = ownerAndRepoValidation.data.owner;
 		const repo = ownerAndRepoValidation.data.repo;
 
     const emailsValidation = parseInviteEmails(formData.get("emails") ?? formData.get("email"));
-		if (!emailsValidation.success || emailsValidation.data.length === 0) throw new Error("Invalid email list");
+		if (!emailsValidation.success || emailsValidation.data.length === 0) throw new Error("Неверный список адресов");
     const emails = emailsValidation.data;
 
     const { repoAccess, installation } = await assertRepoInInstallation(user, owner, repo);
@@ -165,7 +165,7 @@ const handleAddCollaborator = async (prevState: any, formData: FormData) => {
             immediateAccessCount += 1;
           }
         }
-        errors.push(`${normalizedEmail} is already invited to "${owner}/${repo}".`);
+        errors.push(`${normalizedEmail} уже приглашён в «${owner}/${repo}».`);
         continue;
       }
 
@@ -188,7 +188,7 @@ const handleAddCollaborator = async (prevState: any, formData: FormData) => {
           );
           await sendEmail({
             to: normalizedEmail,
-            subject: `Join "${owner}/${repo}" on Pages CMS`,
+            subject: `Приглашение в «${owner}/${repo}» — Plainly`,
             html,
           });
         } catch (error: any) {
@@ -209,7 +209,7 @@ const handleAddCollaborator = async (prevState: any, formData: FormData) => {
           );
           await sendEmail({
             to: normalizedEmail,
-            subject: `You were added to "${owner}/${repo}" on Pages CMS`,
+            subject: `Вас добавили в «${owner}/${repo}» — Plainly`,
             html,
           });
         } catch (error: any) {
@@ -247,12 +247,12 @@ const handleAddCollaborator = async (prevState: any, formData: FormData) => {
 		return {
       message:
         immediateAccessCount > 0 && pendingInviteCount > 0
-          ? `${immediateAccessCount} collaborator${immediateAccessCount === 1 ? "" : "s"} added immediately and ${pendingInviteCount} invite${pendingInviteCount === 1 ? "" : "s"} sent for "${owner}/${repo}".`
+          ? `Добавлено участников: ${immediateAccessCount}; отправлено приглашений: ${pendingInviteCount} — «${owner}/${repo}».`
           : immediateAccessCount > 0
-            ? `${immediateAccessCount} collaborator${immediateAccessCount === 1 ? "" : "s"} added to "${owner}/${repo}".`
+            ? `Добавлено участников: ${immediateAccessCount} — «${owner}/${repo}».`
             : pendingInviteCount === 1
-              ? `${createdCollaborators[0].email} invited to "${owner}/${repo}".`
-              : `${pendingInviteCount} collaborators invited to "${owner}/${repo}".`,
+              ? `${createdCollaborators[0].email} приглашён в «${owner}/${repo}».`
+              : `Приглашено участников: ${pendingInviteCount} — «${owner}/${repo}».`,
 			data: createdCollaborators,
       errors
 		};
@@ -269,10 +269,10 @@ const handleRemoveCollaborator = async (collaboratorId: number, owner: string, r
       headers: await headers(),
     });
     const user = session?.user;
-		if (!user) throw new Error("You must be signed in with GitHub to invite collaborators.");
+		if (!user) throw new Error("Чтобы приглашать участников, войдите через GitHub.");
 
 		const collaborator = await db.query.collaboratorTable.findFirst({ where: eq(collaboratorTable.id, collaboratorId) });
-		if (!collaborator) throw new Error("Collaborator not found");
+		if (!collaborator) throw new Error("Участник не найден");
 
     const { repoAccess } = await assertRepoInInstallation(user, owner, repo);
 
@@ -283,7 +283,7 @@ const handleRemoveCollaborator = async (collaboratorId: number, owner: string, r
 			)
 		).returning();
 
-		if (!deletedCollaborator || deletedCollaborator.length === 0) throw new Error("Failed to delete collaborator");
+		if (!deletedCollaborator || deletedCollaborator.length === 0) throw new Error("Не удалось удалить участника");
 
     await db
       .delete(collaboratorInviteTable)
@@ -295,7 +295,7 @@ const handleRemoveCollaborator = async (collaboratorId: number, owner: string, r
         ),
       );
 
-		return { message: `Invitation to ${collaborator.email} for "${owner}/${repo}" successfully removed.` };
+		return { message: `Приглашение для ${collaborator.email} в «${owner}/${repo}» отменено.` };
 	} catch (error: any) {
 		console.error(error);
 		return { error: error.message };
@@ -308,14 +308,14 @@ const handleResendCollaboratorInvite = async (collaboratorId: number, owner: str
       headers: await headers(),
     });
     const user = session?.user;
-    if (!user) throw new Error("You must be signed in with GitHub to resend collaborator invites.");
+    if (!user) throw new Error("Чтобы повторно отправить приглашение, войдите через GitHub.");
     await assertRepoInInstallation(user, owner, repo);
 
     const collaborator = await db.query.collaboratorTable.findFirst({ where: eq(collaboratorTable.id, collaboratorId) });
-    if (!collaborator) throw new Error("Collaborator not found");
+    if (!collaborator) throw new Error("Участник не найден");
 
     if (collaborator.owner.toLowerCase() !== owner.toLowerCase() || collaborator.repo.toLowerCase() !== repo.toLowerCase()) {
-      throw new Error("Collaborator does not belong to this repository.");
+      throw new Error("Участник не относится к этому репозиторию.");
     }
 
     const baseUrl = getBaseUrl();
@@ -338,11 +338,11 @@ const handleResendCollaboratorInvite = async (collaboratorId: number, owner: str
 
     await sendEmail({
       to: collaborator.email,
-      subject: `Join "${owner}/${repo}" on Pages CMS`,
+      subject: `Приглашение в «${owner}/${repo}» — Plainly`,
       html,
     });
 
-    return { message: `Invitation email resent to ${collaborator.email}.` };
+    return { message: `Приглашение повторно отправлено на ${collaborator.email}.` };
   } catch (error: any) {
     console.error(error);
     return { error: error.message };

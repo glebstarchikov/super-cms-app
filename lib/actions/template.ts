@@ -15,13 +15,13 @@ const handleCopyTemplate = async (prevState: any, formData: FormData) => {
       headers: await headers(),
     });
     const user = session?.user;
-		if (!user) throw new Error("You must be signed in with GitHub to copy a template.");
+		if (!user) throw new Error("Чтобы скопировать шаблон, войдите через GitHub.");
 
-		const token = await requireGithubUserToken(user, "You must be signed in with GitHub to copy a template.");
+		const token = await requireGithubUserToken(user, "Чтобы скопировать шаблон, войдите через GitHub.");
 
     const templateRepos = templates.map(template => template.repository) as string[];
     const templateRepoValidation = z.enum(templateRepos as [string, ...string[]]).safeParse(formData.get("template"));
-    if (!templateRepoValidation.success) throw new Error ("Invalid template repository");
+    if (!templateRepoValidation.success) throw new Error ("Неверный шаблон репозитория");
     
     const ownerAndNameValidation = z.object({
 			owner: z.string().trim().min(1),
@@ -30,13 +30,13 @@ const handleCopyTemplate = async (prevState: any, formData: FormData) => {
 			owner: formData.get("owner"),
 			name: formData.get("name")
 		});
-		if (!ownerAndNameValidation.success) throw new Error ("Invalid owner and/or repo");
+		if (!ownerAndNameValidation.success) throw new Error ("Неверный владелец или репозиторий");
 
 		const owner = ownerAndNameValidation.data.owner;
 		const name = ownerAndNameValidation.data.name;
 
 		const installations = await getInstallations(token, [owner]);
-		if (installations.length !== 1) throw new Error(`"${owner}" is not part of your GitHub App installations`);
+		if (installations.length !== 1) throw new Error(`«${owner}» не входит в ваши установки GitHub App`);
 
     const [template_owner, template_repo] = templateRepoValidation.data.split("/");
 
@@ -49,7 +49,7 @@ const handleCopyTemplate = async (prevState: any, formData: FormData) => {
     });
 
 		return {
-      message: `"${templateRepoValidation.data}" successfully copied as "${response.data.full_name}".`,
+      message: `«${templateRepoValidation.data}» скопирован как «${response.data.full_name}».`,
       data: {
         template: templateRepoValidation.data,
         owner,

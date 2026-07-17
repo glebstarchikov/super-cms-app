@@ -106,22 +106,22 @@ const formatContext = (
 
   switch (run.contextType) {
     case "collection":
-      return `Collection (${contextLabel ?? "-"})`;
+      return `Коллекция (${contextLabel ?? "-"})`;
     case "entry":
-      return `Entry (${contextLabel ?? "-"})`;
+      return `Запись (${contextLabel ?? "-"})`;
     case "media":
-      return `Media (${contextLabel ?? "-"})`;
+      return `Медиа (${contextLabel ?? "-"})`;
     case "file":
-      return `File (${contextLabel ?? "-"})`;
+      return `Файл (${contextLabel ?? "-"})`;
     default:
-      return "Sidebar";
+      return "Боковая панель";
   }
 };
 
 const formatDetails = (run: ActionRunSummary) => [
-  { label: "Surface", value: run.contextType ?? "-" },
-  { label: "Name", value: run.contextName ?? "-" },
-  { label: "Path", value: run.contextPath ?? "-" },
+  { label: "Тип", value: run.contextType ?? "-" },
+  { label: "Название", value: run.contextName ?? "-" },
+  { label: "Путь", value: run.contextPath ?? "-" },
 ];
 
 const getShaUrl = (owner: string, repo: string, sha: string | null) => {
@@ -327,7 +327,7 @@ export function ActionsPage({
     );
     const payload = await requireApiSuccess<{ data: ActionRunSummary[] }>(
       response,
-      "Failed to fetch action runs",
+      "Не удалось загрузить историю действий",
     );
     setRuns(payload.data);
   }, [branch, owner, repo]);
@@ -347,12 +347,12 @@ export function ActionsPage({
       );
       const payload = await requireApiSuccess<{ data?: ActionRunSummary | { id: number } }>(
         response,
-        `Failed to ${intent === "cancel" ? "cancel" : "run"} action`,
+        `Не удалось ${intent === "cancel" ? "отменить" : "запустить"} действие`,
       );
 
       if (intent === "rerun" && payload.data && "id" in payload.data) {
         const actionLabel = actionLabels[run.actionName] ?? run.actionName;
-        const toastId = toast.loading(`Starting "${actionLabel}"…`);
+        const toastId = toast.loading(`Запускаем «${actionLabel}»…`);
         trackActionRun({
           runId: payload.data.id,
           owner,
@@ -362,12 +362,12 @@ export function ActionsPage({
           toastId,
         });
       } else if (intent === "cancel") {
-        toast.success("Run cancelled.");
+        toast.success("Запуск отменён.");
       }
 
       await loadRuns();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Action failed.");
+      toast.error(error instanceof Error ? error.message : "Не удалось выполнить действие.");
     }
   }, [actionLabels, branch, loadRuns, owner, repo, trackActionRun]);
 
@@ -486,7 +486,7 @@ export function ActionsPage({
     () => (
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h1 className="font-semibold text-lg">Actions</h1>
+          <h1 className="font-semibold text-lg">Действия</h1>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -501,11 +501,11 @@ export function ActionsPage({
                   rel="noreferrer"
                 >
                   <BookText />
-                  <span className="sr-only">View docs</span>
+                  <span className="sr-only">Документация</span>
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>View docs</TooltipContent>
+            <TooltipContent>Документация</TooltipContent>
           </Tooltip>
         </div>
         <div className="flex items-center gap-2">
@@ -513,7 +513,7 @@ export function ActionsPage({
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search"
+              placeholder="Поиск"
               className="w-44"
             />
             <Popover>
@@ -522,31 +522,31 @@ export function ActionsPage({
                   <PopoverTrigger asChild>
                     <Button type="button" variant="outline" size="icon">
                       <Funnel />
-                      <span className="sr-only">Open filters</span>
+                      <span className="sr-only">Открыть фильтры</span>
                     </Button>
                   </PopoverTrigger>
                 </TooltipTrigger>
-                <TooltipContent>Filters</TooltipContent>
+                <TooltipContent>Фильтры</TooltipContent>
               </Tooltip>
               <PopoverContent align="end" className="w-56 p-3">
                 <div className="grid gap-2">
                   <Select value={statusFilter} onValueChange={setStatusFilter}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Status" />
+                      <SelectValue placeholder="Статус" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All statuses</SelectItem>
-                      <SelectItem value="succeeded">Succeeded</SelectItem>
-                      <SelectItem value="failed">Failed</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
+                      <SelectItem value="all">Все статусы</SelectItem>
+                      <SelectItem value="succeeded">Успешно</SelectItem>
+                      <SelectItem value="failed">Ошибка</SelectItem>
+                      <SelectItem value="pending">В процессе</SelectItem>
                     </SelectContent>
                   </Select>
                   <Select value={actionFilter} onValueChange={setActionFilter}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Action" />
+                      <SelectValue placeholder="Действие" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All actions</SelectItem>
+                      <SelectItem value="all">Все действия</SelectItem>
                       {actionOptions.map((actionName) => (
                         <SelectItem key={actionName} value={actionName}>
                           {actionLabels[actionName] ?? actionName}
@@ -559,10 +559,10 @@ export function ActionsPage({
                     onValueChange={setTriggeredByFilter}
                   >
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Triggered by" />
+                      <SelectValue placeholder="Кем запущено" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">Anyone</SelectItem>
+                      <SelectItem value="all">Любой</SelectItem>
                       {triggeredByOptions.map((name) => (
                         <SelectItem key={name} value={name}>
                           {name}
@@ -589,10 +589,10 @@ export function ActionsPage({
                 }}
               >
                 <CircleX />
-                <span className="sr-only">Reset filters</span>
+                <span className="sr-only">Сбросить фильтры</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Reset filters</TooltipContent>
+            <TooltipContent>Сбросить фильтры</TooltipContent>
           </Tooltip>
         </div>
       </div>
@@ -621,10 +621,10 @@ export function ActionsPage({
         <TableHeader>
           <TableRow>
             <TableHead></TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Context</TableHead>
-            <TableHead>Triggered</TableHead>
-            <TableHead>Triggered by</TableHead>
+            <TableHead>Название</TableHead>
+            <TableHead>Контекст</TableHead>
+            <TableHead>Запущено</TableHead>
+            <TableHead>Кем запущено</TableHead>
             <TableHead>Ref</TableHead>
             <TableHead></TableHead>
           </TableRow>
@@ -636,7 +636,7 @@ export function ActionsPage({
                 colSpan={7}
                 className="py-8 text-center text-muted-foreground"
               >
-                {runs.length === 0 ? "No actions yet." : "No matching actions."}
+                {runs.length === 0 ? "Пока нет действий." : "Ничего не найдено."}
               </TableCell>
             </TableRow>
           ) : (
@@ -756,7 +756,7 @@ export function ActionsPage({
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" size="icon-sm">
                         <EllipsisVertical className="size-4" />
-                        <span className="sr-only">Run actions</span>
+                        <span className="sr-only">Действия с запуском</span>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
@@ -766,7 +766,7 @@ export function ActionsPage({
                           target="_blank"
                           rel="noreferrer"
                         >
-                          View on GitHub
+                          Открыть на GitHub
                           <ArrowUpRight className="ml-auto size-3 text-muted-foreground" />
                         </Link>
                       </DropdownMenuItem>
@@ -775,14 +775,14 @@ export function ActionsPage({
                         disabled={!run.canRerun}
                         onClick={() => void handleRunAction(run, "rerun")}
                       >
-                        Run again
+                        Запустить снова
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         variant="destructive"
                         disabled={!run.canCancel}
                         onClick={() => void handleRunAction(run, "cancel")}
                       >
-                        Cancel run
+                        Отменить запуск
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
