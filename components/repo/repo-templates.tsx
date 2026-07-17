@@ -49,7 +49,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
   const [selectedAccount, setSelectedAccount] = useState(
     defaultAccount || user?.accounts?.[0],
   );
-  const [name, setName] = useState(templates[0].suggested);
+  const [name, setName] = useState(templates[0]?.suggested ?? "");
   const [isValidName, setIsValidName] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
 
