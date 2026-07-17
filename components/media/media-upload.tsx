@@ -8,6 +8,7 @@ import { getSchemaByName } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 import { requireApiSuccess } from "@/lib/api-client";
 import type { FileSaveData } from "@/types/api";
+import { compressImageForUpload } from "@/lib/super-cms/resize";
 
 interface MediaUploadContextValue {
   handleFiles: (files: File[]) => Promise<void>;
@@ -66,8 +67,10 @@ function MediaUploadRoot({ children, path, onUpload, media, extensions, multiple
   const handleFiles = useCallback(async (files: File[]) => {
     try {
       for (const file of files) {
+        // super-cms: downscale + WebP-convert images client-side before upload.
+        const uploadFile = await compressImageForUpload(file);
         const uploadFilename = getUploadFileName(
-          file.name,
+          uploadFile.name,
           rename ?? configMedia?.rename,
         );
 
@@ -79,7 +82,7 @@ function MediaUploadRoot({ children, path, onUpload, media, extensions, multiple
               resolve(base64Content);
             };
             reader.onerror = () => reject(new Error("Failed to read file"));
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(uploadFile);
           });
 
           const fullPath = joinPathSegments([path ?? "", uploadFilename]);
