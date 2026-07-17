@@ -56,7 +56,7 @@ export function AdminUserSearch({
         type="search"
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        placeholder="Search users"
+        placeholder="Поиск пользователей"
         className="h-8"
       />
     </InputGroup>

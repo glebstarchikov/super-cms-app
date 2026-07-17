@@ -81,7 +81,7 @@ export function InviteSignIn({ token }: { token: string }) {
         toast.error(result.error.message);
       }
     } catch {
-      toast.error("Unable to send sign-in code.");
+      toast.error("Не удалось отправить код для входа.");
     } finally {
       setPending(null);
     }
@@ -90,7 +90,7 @@ export function InviteSignIn({ token }: { token: string }) {
   async function verifyOtp() {
     if (state.status !== "otp_required") return;
     if (otp.length !== 6) {
-      toast.error("Enter the 6-digit code.");
+      toast.error("Введите 6-значный код.");
       return;
     }
 
@@ -121,10 +121,10 @@ export function InviteSignIn({ token }: { token: string }) {
         return;
       }
 
-      toast.error("Unable to claim this invitation.");
+      toast.error("Не удалось принять приглашение.");
       setPending(null);
     } catch {
-      toast.error("Unable to verify code.");
+      toast.error("Не удалось проверить код.");
       setPending(null);
     }
   }
@@ -143,12 +143,12 @@ export function InviteSignIn({ token }: { token: string }) {
     return (
       <Empty className={shellClassName}>
         <EmptyHeader>
-          <EmptyTitle>Invite unavailable</EmptyTitle>
-          <EmptyDescription>This invitation is no longer available.</EmptyDescription>
+          <EmptyTitle>Приглашение недоступно</EmptyTitle>
+          <EmptyDescription>Это приглашение больше недоступно.</EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Link href="/sign-in" className={buttonVariants()}>
-            Sign in
+            Войти
           </Link>
         </EmptyContent>
       </Empty>
@@ -159,8 +159,8 @@ export function InviteSignIn({ token }: { token: string }) {
     return (
       <Empty className={shellClassName}>
         <EmptyHeader>
-          <EmptyTitle>Wrong account</EmptyTitle>
-          <EmptyDescription>This invitation was sent to another account.</EmptyDescription>
+          <EmptyTitle>Не тот аккаунт</EmptyTitle>
+          <EmptyDescription>Это приглашение было отправлено на другой аккаунт.</EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Button
@@ -175,11 +175,11 @@ export function InviteSignIn({ token }: { token: string }) {
               }
             }}
           >
-            Sign out
+            Выйти
             {pending === "sign-out" && <Loader className="size-4 animate-spin" />}
           </Button>
           <Link href="/" className={buttonVariants({ variant: "outline" })}>
-            Go home
+            На главную
           </Link>
         </EmptyContent>
       </Empty>

@@ -90,7 +90,7 @@ function ConfirmActionButton({
   label,
   title,
   description,
-  confirmLabel = "Confirm",
+  confirmLabel = "Подтвердить",
   variant = "outline",
   size = "sm",
   iconOnly = false,
@@ -152,7 +152,7 @@ function ConfirmActionButton({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Отменить</AlertDialogCancel>
           <AlertDialogAction
             variant={variant === "destructive" ? "destructive" : "default"}
             onClick={() => {
@@ -189,10 +189,10 @@ export function CachePage({
       const payload = await requireApiSuccess<{
         status: string;
         data: CacheStatusPayload;
-      }>(response, "Failed to fetch cache status");
+      }>(response, "Не удалось загрузить состояние кэша");
       setData(payload.data);
     } catch (error: any) {
-      toast.error(error?.message || "Failed to fetch cache status");
+      toast.error(error?.message || "Не удалось загрузить состояние кэша");
     } finally {
       setLoading(false);
     }
@@ -205,7 +205,7 @@ export function CachePage({
   const runAction = useCallback(
     async (action: string, successMessage: string) => {
       setActionLoading(action);
-      const loadingId = toast.loading("Updating cache...");
+      const loadingId = toast.loading("Обновляем кэш…");
       try {
         const response = await fetch(
           `/api/${owner}/${repo}/${encodeURIComponent(branch)}/cache`,
@@ -215,11 +215,11 @@ export function CachePage({
             body: JSON.stringify({ action }),
           },
         );
-        await requireApiSuccess(response, "Failed cache action");
+        await requireApiSuccess(response, "Не удалось выполнить действие с кэшем");
         toast.success(successMessage, { id: loadingId });
         await fetchStatus();
       } catch (error: any) {
-        toast.error(error?.message || "Failed cache action", { id: loadingId });
+        toast.error(error?.message || "Не удалось выполнить действие с кэшем", { id: loadingId });
       } finally {
         setActionLoading(null);
       }
@@ -231,7 +231,7 @@ export function CachePage({
     () => (
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h1 className="font-semibold text-lg">Cache</h1>
+          <h1 className="font-semibold text-lg">Кэш</h1>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -246,23 +246,23 @@ export function CachePage({
                   rel="noreferrer"
                 >
                   <BookText />
-                  <span className="sr-only">Cache docs</span>
+                  <span className="sr-only">Документация по кэшу</span>
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>View docs</TooltipContent>
+            <TooltipContent>Документация</TooltipContent>
           </Tooltip>
         </div>
         <ConfirmActionButton
-          label="Clear all cache"
-          title="Clear all cache?"
-          description="This will clear file, config, and permission cache for this repository/branch."
-          confirmLabel="Clear all"
+          label="Очистить весь кэш"
+          title="Очистить весь кэш?"
+          description="Будет очищен кэш файлов, конфигурации и прав доступа для этого репозитория и ветки."
+          confirmLabel="Очистить всё"
           variant="default"
           size="default"
           disabled={loading || actionLoading != null}
           onConfirm={async () =>
-            runAction("clear-all-cache", "All cache cleared")
+            runAction("clear-all-cache", "Кэш полностью очищен")
           }
         />
       </div>
@@ -347,9 +347,9 @@ export function CachePage({
           <div className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Config</CardTitle>
+                <CardTitle className="text-base">Конфигурация</CardTitle>
                 <CardDescription>
-                  Cache of the configuration file (
+                  Кэш файла конфигурации (
                   <code className="text-[13px]">.pages.yml</code>).
                 </CardDescription>
               </CardHeader>
@@ -393,9 +393,9 @@ export function CachePage({
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Permissions</CardTitle>
+                <CardTitle className="text-base">Права доступа</CardTitle>
                 <CardDescription>
-                  Cached repository permission checks.
+                  Кэш проверок прав доступа к репозиторию.
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-sm flex-1">
@@ -519,9 +519,9 @@ export function CachePage({
           <div className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Config</CardTitle>
+                <CardTitle className="text-base">Конфигурация</CardTitle>
                 <CardDescription>
-                  Cache of the configuration file (
+                  Кэш файла конфигурации (
                   <code className="text-[13px]">.pages.yml</code>).
                 </CardDescription>
               </CardHeader>
@@ -585,9 +585,9 @@ export function CachePage({
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Permissions</CardTitle>
+                <CardTitle className="text-base">Права доступа</CardTitle>
                 <CardDescription>
-                  Cached repository permission checks.
+                  Кэш проверок прав доступа к репозиторию.
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-sm flex-1">

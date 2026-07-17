@@ -51,7 +51,7 @@ export function AdminConfirmActionButton({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Отменить</AlertDialogCancel>
           <form
             className="contents"
             action={async () => {

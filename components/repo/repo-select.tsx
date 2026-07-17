@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { formatDistanceToNow } from "date-fns";
+import { ru } from "date-fns/locale";
 import Link from "next/link";
 import { useUser } from "@/contexts/user-context";
 import { getGithubInstallationUrl } from "@/lib/github-app";
@@ -198,7 +199,7 @@ export function RepoSelect({
                   >{result.repo}</Link>
                   {result.private && <LockKeyhole className="h-3 w-3 opacity-50"/>}
                   {result.updatedAt &&
-                    <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(result.updatedAt))} назад</div>
+                    <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(result.updatedAt), { addSuffix: true, locale: ru })}</div>
                   }
                   <Link
                     className={cn("ml-auto", buttonVariants({ variant: "outline", size: "xs"}))}

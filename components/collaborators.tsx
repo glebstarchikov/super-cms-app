@@ -110,15 +110,14 @@ function InviteCollaboratorsDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button variant={triggerVariant} size={triggerSize} disabled={disabled}>
-          {triggerLabel || "Invite"}
+          {triggerLabel || "Пригласить"}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Invite collaborators</DialogTitle>
+          <DialogTitle>Пригласить участников</DialogTitle>
           <DialogDescription>
-            Enter one or multiple email addresses, separated by commas or new
-            lines.
+            Введите один или несколько адресов почты через запятую или с новой строки.
           </DialogDescription>
         </DialogHeader>
         <form action={action} className="space-y-4">
@@ -142,7 +141,7 @@ function InviteCollaboratorsDialog({
               type="submit"
               disabled={parsedInviteEmails.length === 0}
             >
-              Send invite{parsedInviteEmails.length > 1 ? "s" : ""}
+              Отправить приглашени{parsedInviteEmails.length > 1 ? "я" : "е"}
             </SubmitButton>
           </DialogFooter>
         </form>
@@ -298,7 +297,7 @@ export function Collaborators({
     return (
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h1 className="font-semibold text-lg">Collaborators</h1>
+          <h1 className="font-semibold text-lg">Участники</h1>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -313,11 +312,11 @@ export function Collaborators({
                   rel="noreferrer"
                 >
                   <BookText />
-                  <span className="sr-only">Collaborators docs</span>
+                  <span className="sr-only">Документация по участникам</span>
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>View docs</TooltipContent>
+            <TooltipContent>Открыть документацию</TooltipContent>
           </Tooltip>
         </div>
         {showInviteAction ? (
@@ -381,9 +380,9 @@ export function Collaborators({
       <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center">
         <Empty className="max-w-[420px] flex-none">
           <EmptyHeader>
-            <EmptyTitle>Something went wrong</EmptyTitle>
+            <EmptyTitle>Что-то пошло не так</EmptyTitle>
             <EmptyDescription>
-              We couldn&apos;t load the list of collaborators.
+              Не удалось загрузить список участников.
             </EmptyDescription>
           </EmptyHeader>
         </Empty>
@@ -440,7 +439,7 @@ export function Collaborators({
                       ) : (
                         <EllipsisVertical />
                       )}
-                      <span className="sr-only">Collaborator actions</span>
+                      <span className="sr-only">Действия с участником</span>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
@@ -451,7 +450,7 @@ export function Collaborators({
                         resending.includes(collaborator.id)
                       }
                     >
-                      Resend invitation
+                      Отправить приглашение повторно
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
@@ -462,7 +461,7 @@ export function Collaborators({
                         resending.includes(collaborator.id)
                       }
                     >
-                      Remove
+                      Убрать
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -478,10 +477,9 @@ export function Collaborators({
           >
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                <AlertDialogTitle>Вы уверены?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This will remove access to &quot;{owner}/{repo}&quot; for
-                  &quot;{collaboratorToRemove?.email}&quot;.
+                  Доступ к «{owner}/{repo}» для «{collaboratorToRemove?.email}» будет убран.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
@@ -492,7 +490,7 @@ export function Collaborators({
                     void handleConfirmRemove(collaboratorToRemove.id);
                   }}
                 >
-                  Remove collaborator
+                  Убрать участника
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -502,9 +500,9 @@ export function Collaborators({
         <div className="flex-1 flex items-center">
           <Empty>
             <EmptyHeader>
-              <EmptyTitle>No collaborators</EmptyTitle>
+              <EmptyTitle>Нет участников</EmptyTitle>
               <EmptyDescription>
-                Invite collaborators to give them access to this repository.
+                Пригласите участников, чтобы дать им доступ к этому репозиторию.
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
@@ -518,7 +516,7 @@ export function Collaborators({
                 value={emails}
                 onValueChange={setEmails}
                 disabled={isLoading}
-                triggerLabel="Invite a collaborator"
+                triggerLabel="Пригласить участника"
                 triggerVariant="default"
                 triggerSize="default"
               />

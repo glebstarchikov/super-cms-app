@@ -65,13 +65,13 @@ function PaginationPrevious({
 }: React.ComponentProps<typeof PaginationLink> & { iconOnly?: boolean }) {
   return (
     <PaginationLink
-      aria-label="Go to previous page"
+      aria-label="Предыдущая страница"
       size={iconOnly ? "icon-sm" : "default"}
       className={cn(iconOnly ? "size-8" : "gap-1 px-2.5 sm:pl-2.5", className)}
       {...props}
     >
       <ChevronLeft className="h-4 w-4" />
-      {iconOnly ? <span className="sr-only">Previous</span> : <span className="hidden sm:block">Previous</span>}
+      {iconOnly ? <span className="sr-only">Назад</span> : <span className="hidden sm:block">Назад</span>}
     </PaginationLink>
   );
 }
@@ -83,12 +83,12 @@ function PaginationNext({
 }: React.ComponentProps<typeof PaginationLink> & { iconOnly?: boolean }) {
   return (
     <PaginationLink
-      aria-label="Go to next page"
+      aria-label="Следующая страница"
       size={iconOnly ? "icon-sm" : "default"}
       className={cn(iconOnly ? "size-8" : "gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      {iconOnly ? <span className="sr-only">Next</span> : <span className="hidden sm:block">Next</span>}
+      {iconOnly ? <span className="sr-only">Далее</span> : <span className="hidden sm:block">Далее</span>}
       <ChevronRight className="h-4 w-4" />
     </PaginationLink>
   );
@@ -105,7 +105,7 @@ function PaginationEllipsis({
       {...props}
     >
       <MoreHorizontal className="h-4 w-4" />
-      <span className="sr-only">More pages</span>
+      <span className="sr-only">Ещё страницы</span>
     </span>
   );
 }

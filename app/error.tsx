@@ -31,7 +31,7 @@ export default function Error({
   return (
     <Empty className="absolute inset-0 border-0 rounded-none">
       <EmptyHeader>
-        <EmptyTitle>Something went wrong</EmptyTitle>
+        <EmptyTitle>Что-то пошло не так</EmptyTitle>
         <EmptyDescription>{error.message}</EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row justify-center gap-2">
@@ -39,13 +39,13 @@ export default function Error({
           className={buttonVariants({ variant: "default" })}
           href="/"
         >
-          Go home
+          На главную
         </Link>
         <button
           className={buttonVariants({ variant: "outline" })}
           onClick={reset}
         >
-          Try again
+          Попробовать снова
         </button>
       </EmptyContent>
     </Empty>

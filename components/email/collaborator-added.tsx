@@ -38,7 +38,7 @@ export const CollaboratorAddedEmailTemplate = ({
     <Html>
       <Head />
       <Preview>
-        You were added to &quot;{repoName}&quot; on Pages CMS
+        Вас добавили в «{repoName}» в Plainly
       </Preview>
       <Tailwind>
         <Body
@@ -54,7 +54,7 @@ export const CollaboratorAddedEmailTemplate = ({
                 src={`${baseUrl}/images/email-logo.png`}
                 width="42"
                 height="42"
-                alt="Pages CMS"
+                alt="Plainly"
                 className="my-0 mx-auto"
               />
             </Section>
@@ -62,7 +62,7 @@ export const CollaboratorAddedEmailTemplate = ({
               className="text-[24px] font-semibold p-0 my-[30px] mx-0 text-center tracking-tight"
               style={{ color: emailTheme.foreground }}
             >
-              You were added to &quot;{repoName}&quot;
+              Вас добавили в «{repoName}»
             </Heading>
             <Text
               className="text-[16px] leading-[24px]"
@@ -75,8 +75,8 @@ export const CollaboratorAddedEmailTemplate = ({
               >
                 {invitedByName}
               </Link>{" "}
-              added you to the &quot;{repoName}&quot; project on Pages CMS.
-              You already have access, so there is nothing to accept.
+              добавил(а) вас в проект «{repoName}» в Plainly. У вас уже есть
+              доступ, поэтому подтверждать ничего не нужно.
             </Text>
             <Section className="text-center mt-[24px] mb-[24px]">
               <Button
@@ -88,14 +88,14 @@ export const CollaboratorAddedEmailTemplate = ({
                   color: emailTheme.buttonForeground,
                 }}
               >
-                Open &quot;{repoName}&quot;
+                Открыть «{repoName}»
               </Button>
             </Section>
             <Text
               className="text-[14px] leading-[24px] mt-[36px]"
               style={{ color: emailTheme.mutedForeground }}
             >
-              This email was intended for{" "}
+              Это письмо предназначено для{" "}
               <Link
                 href={`mailto:${email}`}
                 className="underline"

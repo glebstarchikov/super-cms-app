@@ -33,7 +33,7 @@ export function AdminUserRowActions({
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon-sm" aria-label={`User actions for ${name}`}>
+          <Button variant="outline" size="icon-sm" aria-label={`Действия с пользователем ${name}`}>
             <MoreHorizontal className="size-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -46,7 +46,7 @@ export function AdminUserRowActions({
             }}
           >
             <LogOut className="size-4" />
-            Log out
+            Завершить сеансы
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -54,13 +54,13 @@ export function AdminUserRowActions({
       <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Log out user?</AlertDialogTitle>
+            <AlertDialogTitle>Завершить сеансы пользователя?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will revoke all active sessions for {name}.
+              Все активные сеансы пользователя {name} будут завершены.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>Отменить</AlertDialogCancel>
             <form
               className="contents"
               action={async () => {
@@ -68,7 +68,7 @@ export function AdminUserRowActions({
                 setConfirmOpen(false);
               }}
             >
-              <AlertDialogAction>Log out</AlertDialogAction>
+              <AlertDialogAction>Завершить сеансы</AlertDialogAction>
             </form>
           </AlertDialogFooter>
         </AlertDialogContent>

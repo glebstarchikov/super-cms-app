@@ -18,7 +18,7 @@ const Installations = () => {
     return (
       <div className="text-sm text-muted-foreground h-[50px] px-6 flex justify-center items-center bg-accent rounded-md">
         <Ban className="h-4 w-4 mr-2" />
-        No account with the Github application installed.
+        Нет аккаунтов с установленным приложением GitHub.
       </div>
     );
   }
@@ -33,7 +33,7 @@ const Installations = () => {
           <div className="flex gap-x-2 items-center">
             <img
               src={`https://github.com/${account.login}.png`}
-              alt={`${account.login}'s avatar`}
+              alt={`Аватар ${account.login}`}
               className="h-6 w-6 rounded"
             />
             <span className="font-medium truncate hover:underline">{account.login}</span>
@@ -42,7 +42,7 @@ const Installations = () => {
             <DropdownMenuTrigger asChild>
               <Button size="icon-xs" variant="outline" className="ml-auto">
                 <EllipsisVertical className="h-4 w-4" />
-                <span className="sr-only">Installation actions</span>
+                <span className="sr-only">Действия с установкой</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -52,7 +52,7 @@ const Installations = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Manage GitHub App
+                  Управлять приложением GitHub
                   <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
                 </a>
               </DropdownMenuItem>

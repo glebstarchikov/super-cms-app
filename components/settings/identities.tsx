@@ -65,17 +65,17 @@ export function Identities({
       const payload = await response.json().catch(() => null);
       if (!response.ok || !payload?.status) {
         const message =
-          payload?.message || "Failed to disconnect GitHub account.";
+          payload?.message || "Не удалось отключить аккаунт GitHub.";
         throw new Error(message);
       }
 
-      toast.success("GitHub account disconnected.");
+      toast.success("Аккаунт GitHub отключён.");
       router.refresh();
     } catch (error) {
       const message =
         error instanceof Error
           ? error.message
-          : "Failed to disconnect GitHub account.";
+          : "Не удалось отключить аккаунт GitHub.";
       toast.error(message);
     } finally {
       setPendingAction(null);
@@ -87,7 +87,7 @@ export function Identities({
       <li className="flex items-center gap-x-3 border border-b-0 first:rounded-t-md px-3 py-2 text-sm">
         <div className="flex items-center gap-x-2">
           <Mail className="h-4 w-4" />
-          <span className="font-medium">Email</span>
+          <span className="font-medium">Электронная почта</span>
         </div>
         <div className="ml-2 truncate text-muted-foreground">{email}</div>
       </li>
@@ -103,7 +103,7 @@ export function Identities({
         </div>
         {githubConnected && (
           <div className="ml-2 truncate text-muted-foreground">
-            {githubUsername ? `@${githubUsername}` : "Connected"}
+            {githubUsername ? `@${githubUsername}` : "Подключено"}
           </div>
         )}
         {!githubConnected ? (
@@ -114,7 +114,7 @@ export function Identities({
             onClick={handleConnectGithub}
             disabled={pendingAction !== null}
           >
-            Connect
+            Подключить
             {pendingAction === "connect" && (
               <Loader className="h-4 w-4 animate-spin" />
             )}
@@ -133,7 +133,7 @@ export function Identities({
                 ) : (
                   <EllipsisVertical className="h-4 w-4" />
                 )}
-                <span className="sr-only">GitHub actions</span>
+                <span className="sr-only">Действия с GitHub</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -141,7 +141,7 @@ export function Identities({
                 <>
                   <DropdownMenuItem asChild>
                     <a href={githubManageUrl} target="_blank" rel="noreferrer">
-                      Manage on GitHub
+                      Управлять на GitHub
                       <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
                     </a>
                   </DropdownMenuItem>
@@ -153,7 +153,7 @@ export function Identities({
                 onClick={handleDisconnectGithub}
                 disabled={pendingAction !== null}
               >
-                Disconnect
+                Отключить
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

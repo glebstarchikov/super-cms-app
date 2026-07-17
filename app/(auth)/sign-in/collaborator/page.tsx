@@ -12,8 +12,8 @@ export default async function Page({
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Invite unavailable</EmptyTitle>
-          <EmptyDescription>This invitation link is invalid.</EmptyDescription>
+          <EmptyTitle>Приглашение недоступно</EmptyTitle>
+          <EmptyDescription>Эта ссылка-приглашение недействительна.</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );

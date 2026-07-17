@@ -947,7 +947,7 @@ export function Editor({
                   value={activeState.blockType}
                   onChange={(event) => setBlockType(event.target.value as BlockType)}
                   disabled={disabled}
-                  aria-label="Block style"
+                  aria-label="Стиль блока"
                   className="h-7 w-full appearance-none rounded-md border border-transparent bg-transparent px-2 pr-5.5 text-sm shadow-none outline-none hover:bg-accent focus-visible:outline-none focus-visible:ring-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {blockOptions.map((option) => (
@@ -983,8 +983,8 @@ export function Editor({
             {isOnImage ? (
               <button
                 type="button"
-                aria-label="Image alt text"
-                title="Image alt text"
+                aria-label="Альтернативный текст"
+                title="Альтернативный текст"
                 aria-pressed={showAltInput}
                 onClick={toggleAltInput}
                 disabled={disabled}
@@ -1049,7 +1049,7 @@ export function Editor({
               <input
                 id="image-alt"
                 type="text"
-                placeholder="Describe image"
+                placeholder="Опишите изображение"
                 value={imageAltText}
                 onChange={(event) => setImageAltText(event.target.value)}
                 onKeyDown={(event) => {

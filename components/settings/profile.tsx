@@ -50,13 +50,13 @@ export function Profile({ name, email, githubUsername }: ProfileProps) {
       });
       const payload = await response.json().catch(() => null);
       if (!response.ok || !payload?.status) {
-        throw new Error(payload?.message || "Failed to update profile.");
+        throw new Error(payload?.message || "Не удалось обновить профиль.");
       }
 
-      toast.success("Profile updated.");
+      toast.success("Профиль обновлён.");
       router.refresh();
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Failed to update profile.";
+      const message = error instanceof Error ? error.message : "Не удалось обновить профиль.";
       toast.error(message);
     } finally {
       setIsSaving(false);
@@ -66,8 +66,8 @@ export function Profile({ name, email, githubUsername }: ProfileProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Profile</CardTitle>
-        <CardDescription>Manage the information displayed to other users.</CardDescription>
+        <CardTitle>Профиль</CardTitle>
+        <CardDescription>Информация, которую видят другие пользователи.</CardDescription>
       </CardHeader>
       <CardContent>
         <form
@@ -80,7 +80,7 @@ export function Profile({ name, email, githubUsername }: ProfileProps) {
           <div className="grid w-full items-center gap-4">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="name" className="text-right">
-                Name
+                Имя
               </Label>
               <div className="col-span-3">
                 <Input
@@ -95,7 +95,7 @@ export function Profile({ name, email, githubUsername }: ProfileProps) {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="picture" className="text-right">
-                Picture
+                Фото
               </Label>
               <div className="col-span-3">
                 <Avatar className="h-24 w-24 rounded-md">
@@ -123,7 +123,7 @@ export function Profile({ name, email, githubUsername }: ProfileProps) {
           onClick={() => void handleSave()}
           disabled={!canSave}
         >
-          Save profile
+          Сохранить профиль
           {isSaving && <Loader className="ml-2 h-4 w-4 animate-spin" />}
         </Button>
       </CardFooter>

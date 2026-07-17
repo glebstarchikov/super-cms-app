@@ -12,7 +12,7 @@ export function AdminButton() {
 
   return (
     <Button asChild variant="ghost" size="icon-sm" className="rounded-full">
-      <Link href="/admin" aria-label="Admin panel">
+      <Link href="/admin" aria-label="Панель администратора">
         <Settings className="size-4" />
       </Link>
     </Button>

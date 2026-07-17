@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { formatDistanceToNowStrict } from "date-fns";
+import { ru } from "date-fns/locale";
 import {
   CircleCheck,
   CirclePlay,
@@ -97,7 +98,7 @@ const formatRunLine = (run: ActionRunSummary) => {
     );
   }
 
-  const relative = formatDistanceToNowStrict(createdAt, { addSuffix: true });
+  const relative = formatDistanceToNowStrict(createdAt, { addSuffix: true, locale: ru });
 
   return (
     <span className="flex min-w-0 flex-col">

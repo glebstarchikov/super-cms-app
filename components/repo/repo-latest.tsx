@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { formatDistanceToNow } from "date-fns";
+import { ru } from "date-fns/locale";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -62,7 +63,7 @@ export function RepoLatest() {
             className="truncate font-medium hover:underline"
             href={`/${visit.owner}/${visit.repo}/${encodeURIComponent(visit.branch)}`}
           >{visit.repo}</Link>
-          <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(visit.timestamp * 1000))} назад</div>
+          <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(visit.timestamp * 1000), { addSuffix: true, locale: ru })}</div>
           <Link
             className={cn("ml-auto", buttonVariants({ variant: "outline", size: "xs"}))}
             href={`/${visit.owner}/${visit.repo}/${encodeURIComponent(visit.branch)}`}

@@ -1,6 +1,7 @@
 "use client";
 
 import { formatDistanceToNow } from "date-fns";
+import { ru } from "date-fns/locale";
 import { getInitialsFromName } from "@/lib/utils/avatar";
 import { useConfig } from "@/contexts/config-context";
 import type { EntryHistoryItem } from "@/types/api";
@@ -38,7 +39,7 @@ function HistoryItemContent({
       <div className={compact ? "text-left overflow-hidden" : "text-left overflow-hidden ml-3"}>
         <div className={compact ? "truncate" : "text-sm font-medium truncate"}>{authorName}</div>
         <div className="text-xs text-muted-foreground truncate">
-          {authorDate ? `${formatDistanceToNow(authorDate)} назад` : "Дата неизвестна"}
+          {authorDate ? `${formatDistanceToNow(authorDate, { addSuffix: true, locale: ru })}` : "Дата неизвестна"}
         </div>
       </div>
     </>
