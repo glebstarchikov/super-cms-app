@@ -5,7 +5,6 @@ import {
   Head,
   Heading,
   Html,
-  Img,
   Link,
   Preview,
   Section,
@@ -23,12 +22,6 @@ export const LoginEmailTemplate = ({
   otp: string;
   preview?: string;
 }) => {
-  const baseUrl = process.env.BASE_URL
-    ? process.env.BASE_URL
-    : process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "";
-
   return (
     <Html>
       <Head />
@@ -53,7 +46,7 @@ export const LoginEmailTemplate = ({
                   color: emailTheme.foreground,
                 }}
               >
-                plainly<span style={{ color: "#E8502D" }}>.</span>
+                plainly
               </Text>
             </Section>
             <Heading

@@ -7,11 +7,6 @@ export function PlainlyLogo({ className }: { className?: string }) {
       style={{ fontFamily: "var(--font-space-grotesk)" }}
     >
       plainly
-      <span
-        aria-hidden="true"
-        className="ml-[0.1em] inline-block rounded-full bg-primary align-baseline"
-        style={{ width: "0.3em", height: "0.3em" }}
-      />
     </span>
   );
 }

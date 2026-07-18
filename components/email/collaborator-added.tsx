@@ -6,7 +6,6 @@ import {
   Head,
   Heading,
   Html,
-  Img,
   Link,
   Preview,
   Section,
@@ -28,12 +27,6 @@ export const CollaboratorAddedEmailTemplate = ({
   invitedByName: string;
   invitedByUrl: string;
 }) => {
-  const baseUrl = process.env.BASE_URL
-    ? process.env.BASE_URL
-    : process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "";
-
   return (
     <Html>
       <Head />
@@ -60,7 +53,7 @@ export const CollaboratorAddedEmailTemplate = ({
                   color: emailTheme.foreground,
                 }}
               >
-                plainly<span style={{ color: "#E8502D" }}>.</span>
+                plainly
               </Text>
             </Section>
             <Heading
