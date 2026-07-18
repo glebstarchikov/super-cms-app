@@ -7,6 +7,13 @@ export const getBaseUrl = () => {
     return baseUrl;
   }
 
+  // Vercel exposes the project's stable production domain at build and runtime,
+  // so a deploy works before BASE_URL (i.e. a custom domain) is set.
+  const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercelUrl) {
+    return `https://${vercelUrl}`;
+  }
+
   if (process.env.NODE_ENV !== "production") {
     return DEV_BASE_URL;
   }
