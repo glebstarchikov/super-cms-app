@@ -11,8 +11,12 @@ declare global {
 const client =
   globalThis.__pagesCmsPostgresClient
   ?? postgres(process.env.DATABASE_URL!, {
-    // Keep conservative pool size in dev to avoid local connection spikes.
-    max: parseInt(process.env.POSTGRES_MAX_CONNECTIONS || "5", 10),
+    // One connection per instance: a serverless invocation serves a single
+    // request at a time, and Supabase's session pooler caps the whole project
+    // at 15 clients — a larger pool per instance exhausts it after 3 of them.
+    max: parseInt(process.env.POSTGRES_MAX_CONNECTIONS || "1", 10),
+    // Warm instances otherwise hold their slot open indefinitely.
+    idle_timeout: 20,
   });
 
 if (process.env.NODE_ENV !== "production") {
