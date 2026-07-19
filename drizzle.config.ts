@@ -8,6 +8,8 @@ export default defineConfig({
   strict: true,
   verbose: true,
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    // Migrations need a session-mode connection: the transaction pooler that
+    // DATABASE_URL points at cannot hold the session state DDL relies on.
+    url: (process.env.DIRECT_DATABASE_URL || process.env.DATABASE_URL)!,
   },
 });

@@ -17,6 +17,10 @@ const client =
     max: parseInt(process.env.POSTGRES_MAX_CONNECTIONS || "1", 10),
     // Warm instances otherwise hold their slot open indefinitely.
     idle_timeout: 20,
+    // DATABASE_URL points at Supabase's transaction pooler (port 6543), which
+    // multiplexes many clients onto few Postgres connections but does not
+    // support prepared statements. Migrations use DIRECT_DATABASE_URL instead.
+    prepare: false,
   });
 
 if (process.env.NODE_ENV !== "production") {
