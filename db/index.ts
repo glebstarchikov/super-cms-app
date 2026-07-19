@@ -15,9 +15,11 @@ const client =
     // multiplexes many clients onto few Postgres connections but does not
     // support prepared statements. Migrations use DIRECT_DATABASE_URL instead.
     prepare: false,
-    // A serverless invocation serves one request at a time, so a larger pool
-    // per instance buys nothing.
-    max: parseInt(process.env.POSTGRES_MAX_CONNECTIONS || "1", 10),
+    // A request is one request, but a single render can fire many queries at
+    // once — /admin issues eleven via Promise.all. max:1 serialised those
+    // behind one connection and starved every other request on the instance.
+    // That cap only ever made sense for the session pooler's 15-client limit.
+    max: parseInt(process.env.POSTGRES_MAX_CONNECTIONS || "5", 10),
     // Long enough that a warm instance reuses its connection instead of
     // re-handshaking through the pooler on every request. The previous 20s
     // was a workaround for the session pooler's 15-client cap, which the
