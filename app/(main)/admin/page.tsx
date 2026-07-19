@@ -260,14 +260,12 @@ export default async function Page({
                       <TableRow key={user.id}>
                         <TableCell className="w-10 min-w-10">
                           <Avatar size="sm">
-                            <AvatarImage
-                              src={
-                                user.githubUsername
-                                  ? `https://github.com/${user.githubUsername}.png`
-                                  : `https://unavatar.io/${user.email}?fallback=false`
-                              }
-                              alt={user.name || user.email}
-                            />
+                            {user.githubUsername && (
+                              <AvatarImage
+                                src={`https://github.com/${user.githubUsername}.png`}
+                                alt={user.name || user.email}
+                              />
+                            )}
                             <AvatarFallback>
                               {getInitialsFromName(user.name || user.email)}
                             </AvatarFallback>

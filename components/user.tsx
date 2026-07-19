@@ -43,14 +43,12 @@ export function User({
           className={cn(className, "rounded-full")}
         >
           <Avatar className="size-6">
-            <AvatarImage
-              src={
-                user?.githubUsername
-                  ? `https://github.com/${user.githubUsername}.png`
-                  : `https://unavatar.io/${user?.email}?fallback=false`
-              }
-              alt={user?.name || user.email}
-            />
+            {user?.githubUsername && (
+              <AvatarImage
+                src={`https://github.com/${user.githubUsername}.png`}
+                alt={user?.name || user.email}
+              />
+            )}
             <AvatarFallback>
               {getInitialsFromName(user.name ?? undefined)}
             </AvatarFallback>

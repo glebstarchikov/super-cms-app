@@ -390,10 +390,6 @@ export function Collaborators({
                 className="flex gap-x-2 items-center border border-b-0 last:border-b first:rounded-t-md last:rounded-b-md px-3 py-2 text-sm"
               >
                 <Avatar className="h-6 w-6">
-                  <AvatarImage
-                    src={`https://unavatar.io/${collaborator.email}?fallback=false`}
-                    alt={`${collaborator.email}'s avatar`}
-                  />
                   <AvatarFallback className="font-medium text-muted-foreground uppercase text-xs">
                     {collaborator.email.split("@")[0].substring(0, 2)}
                   </AvatarFallback>

@@ -672,9 +672,7 @@ export function ActionsPage({
                               src={
                                 run.triggeredByGithubUsername
                                   ? `https://github.com/${run.triggeredByGithubUsername}.png`
-                                  : run.triggeredByEmail
-                                    ? `https://unavatar.io/${run.triggeredByEmail}?fallback=false`
-                                    : (run.triggeredByImage ?? undefined)
+                                  : (run.triggeredByImage ?? undefined)
                               }
                               alt={run.triggeredByName}
                             />

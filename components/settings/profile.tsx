@@ -99,14 +99,15 @@ export function Profile({ name, email, githubUsername }: ProfileProps) {
               </Label>
               <div className="col-span-3">
                 <Avatar className="h-24 w-24 rounded-md">
-                  <AvatarImage
-                    src={
-                      githubUsername
-                        ? `https://github.com/${githubUsername}.png`
-                        : `https://unavatar.io/${email}?fallback=false`
-                    }
-                    alt={avatarLabel}
-                  />
+                  {/* Only GitHub avatars: the previous unavatar.io fallback sent
+                      the user's email to a third party and hung the page when
+                      that host was unreachable. Email users get initials. */}
+                  {githubUsername && (
+                    <AvatarImage
+                      src={`https://github.com/${githubUsername}.png`}
+                      alt={avatarLabel}
+                    />
+                  )}
                   <AvatarFallback className="rounded-md">
                     {getInitialsFromName(avatarLabel)}
                   </AvatarFallback>
