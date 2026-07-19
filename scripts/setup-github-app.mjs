@@ -25,7 +25,6 @@ async function main() {
   const ownerType = args.ownerType === "org" ? "org" : "personal";
   const orgSlug = ownerType === "org" ? (args.org || "").trim() : "";
   const state = randomBytes(16).toString("hex");
-  const webhookSecret = randomBytes(32).toString("base64url");
 
   if (ownerType === "org" && !orgSlug) {
     throw new Error("Missing --org <slug> when --owner-type org.");
@@ -42,8 +41,12 @@ async function main() {
     callback_urls: [userAuthorizationCallbackUrl],
     redirect_url: localCallbackUrl,
     description:
-      "Pages CMS is an open source CMS for editing content in GitHub repositories.",
+      "Plainly — простой редактор контента для вашего сайта. Правки сохраняются прямо в репозиторий на GitHub.",
     public: false,
+    hook_attributes: {
+      url: webhookUrl,
+      active: true,
+    },
     default_permissions: {
       contents: "write",
       metadata: "read",
@@ -82,7 +85,7 @@ async function main() {
     GITHUB_APP_CLIENT_ID: converted.client_id,
     GITHUB_APP_CLIENT_SECRET: converted.client_secret,
     GITHUB_APP_PRIVATE_KEY: wrapQuoted(escapeNewlines(converted.pem || "")),
-    GITHUB_APP_WEBHOOK_SECRET: webhookSecret,
+    GITHUB_APP_WEBHOOK_SECRET: converted.webhook_secret || "",
   };
 
   if (envPath) {
