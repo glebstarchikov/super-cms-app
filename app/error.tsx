@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { GithubAuthExpired } from "@/components/github-auth-expired";
 import { isGithubAuthError } from "@/lib/github-auth";
@@ -20,6 +21,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const router = useRouter();
+
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -43,7 +46,13 @@ export default function Error({
         </Link>
         <button
           className={buttonVariants({ variant: "outline" })}
-          onClick={reset}
+          onClick={() => {
+            // reset() alone only re-renders the boundary with the cached
+            // payload, so a failed server render fails again identically.
+            // refresh() refetches it first.
+            router.refresh();
+            reset();
+          }}
         >
           Попробовать снова
         </button>
