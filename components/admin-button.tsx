@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Shield } from "lucide-react";
 import { useUser } from "@/contexts/user-context";
 import { Button } from "@/components/ui/button";
 
@@ -17,12 +16,10 @@ export function AdminButton() {
   return (
     <Button
       variant="ghost"
-      size="icon-sm"
-      className="rounded-full"
+      size="sm"
       onClick={() => router.push("/admin")}
-      aria-label="Панель администратора"
     >
-      <Shield className="size-4" />
+      Админ
     </Button>
   );
 }
