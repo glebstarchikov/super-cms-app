@@ -196,6 +196,7 @@ export function RepoSelect({
                   <Link
                     className="truncate font-medium hover:underline"
                     href={`/${result.owner}/${result.repo}/${result.defaultBranch ? encodeURIComponent(result.defaultBranch) : ""}`}
+                    prefetch={false}
                   >{result.repo}</Link>
                   {result.private && <LockKeyhole className="h-3 w-3 opacity-50"/>}
                   {result.updatedAt &&
@@ -204,6 +205,7 @@ export function RepoSelect({
                   <Link
                     className={cn("ml-auto", buttonVariants({ variant: "outline", size: "xs"}))}
                     href={`/${result.owner}/${result.repo}/${result.defaultBranch ? encodeURIComponent(result.defaultBranch) : ""}`}
+                    prefetch={false}
                   >
                     Открыть
                   </Link>
