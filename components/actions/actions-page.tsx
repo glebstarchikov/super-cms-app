@@ -678,7 +678,9 @@ export function ActionsPage({
                             />
                             <AvatarFallback>
                               {getInitialsFromName(
-                                run.triggeredByName ?? undefined,
+                                run.triggeredByName ||
+                                  run.triggeredByEmail ||
+                                  undefined,
                               )}
                             </AvatarFallback>
                           </Avatar>

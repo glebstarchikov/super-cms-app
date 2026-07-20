@@ -50,7 +50,7 @@ export function User({
               />
             )}
             <AvatarFallback>
-              {getInitialsFromName(user.name ?? undefined)}
+              {getInitialsFromName(user.name || user.email)}
             </AvatarFallback>
           </Avatar>
         </Button>
