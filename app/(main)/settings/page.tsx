@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { db } from "@/db";
@@ -25,7 +26,10 @@ export default async function Page() {
     headers: await headers(),
   });
   const user = session?.user;
-  if (!user) throw new Error("User not found");
+  // Middleware normally catches this, but the session can lapse between its
+  // check and this render. Throwing showed an error screen where the only
+  // useful action is to sign in again.
+  if (!user) redirect("/sign-in");
   const githubAccount = await db.query.accountTable.findFirst({
     where: and(
       eq(accountTable.userId, user.id),
