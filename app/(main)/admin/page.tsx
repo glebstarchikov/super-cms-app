@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { desc, eq, or, sql } from "drizzle-orm";
+import { desc, or, sql } from "drizzle-orm";
 import { ArrowLeft, RefreshCcw } from "lucide-react";
 import { MainRootLayout } from "../main-root-layout";
 import { requireAdminSession } from "@/lib/admin";
@@ -91,6 +91,11 @@ const formatCompactNumber = (value: number) => {
 
 const USERS_PER_PAGE = 20;
 
+// If this render ever stalls again, fail in 30s instead of hanging to the
+// platform's 300s limit — a mid-stream kill the browser reports as a
+// connection reset.
+export const maxDuration = 30;
+
 const buildAdminUrl = (q: string, page: number) => {
   const searchParams = new URLSearchParams();
   if (q) searchParams.set("q", q);
@@ -139,36 +144,41 @@ export default async function Page({
     ? usersQuery.where(userSearchFilter)
     : usersQuery;
 
-  const [
-    [userCount],
-    [verifiedUserCount],
-    [githubUserCount],
-    [installCount],
-    [repoCount],
-    [collaboratorCount],
-    [cacheFileCount],
-    [cacheMetaCount],
-    [cachePermissionCount],
-    [filteredUserCount],
-    users,
-  ] = await Promise.all([
-    db.select({ count: sql<number>`count(*)::int` }).from(userTable),
-    db.select({ count: sql<number>`count(*)::int` }).from(userTable).where(eq(userTable.emailVerified, true)),
-    db.select({ count: sql<number>`count(*)::int` }).from(accountTable).where(eq(accountTable.providerId, "github")),
-    db.select({ count: sql<number>`count(*)::int` }).from(githubInstallationTokenTable),
-    db.select({ count: sql<number>`count(distinct (${configTable.owner}, ${configTable.repo}))::int` }).from(configTable),
-    db.select({ count: sql<number>`count(*)::int` }).from(collaboratorTable),
-    db.select({ count: sql<number>`count(*)::int` }).from(cacheFileTable),
-    db.select({ count: sql<number>`count(*)::int` }).from(cacheFileMetaTable),
-    db.select({ count: sql<number>`count(*)::int` }).from(cachePermissionTable),
-    userSearchFilter
-      ? db.select({ count: sql<number>`count(*)::int` }).from(userTable).where(userSearchFilter)
-      : db.select({ count: sql<number>`count(*)::int` }).from(userTable),
-    filteredUsersQuery
-      .orderBy(desc(userTable.createdAt))
-      .limit(USERS_PER_PAGE)
-      .offset((currentPage - 1) * USERS_PER_PAGE),
-  ]);
+  // All dashboard counts in one round trip. These were ten concurrent selects
+  // via Promise.all — the flood stranded renders in the DB client while
+  // Postgres sat idle with every query long finished, and /admin hung until
+  // Vercel's 300s kill closed the socket mid-stream.
+  const countsRows = (await db.execute(sql`select
+    (select count(*)::int from ${userTable}) as user_count,
+    (select count(*)::int from ${userTable} where ${userTable.emailVerified} = true) as verified_user_count,
+    (select count(*)::int from ${accountTable} where ${accountTable.providerId} = 'github') as github_user_count,
+    (select count(*)::int from ${githubInstallationTokenTable}) as install_count,
+    (select count(distinct (${configTable.owner}, ${configTable.repo}))::int from ${configTable}) as repo_count,
+    (select count(*)::int from ${collaboratorTable}) as collaborator_count,
+    (select count(*)::int from ${cacheFileTable}) as cache_file_count,
+    (select count(*)::int from ${cacheFileMetaTable}) as cache_meta_count,
+    (select count(*)::int from ${cachePermissionTable}) as cache_permission_count
+  `)) as unknown as Record<string, number>[];
+  const counts = countsRows[0];
+
+  const userCount = { count: Number(counts?.user_count ?? 0) };
+  const verifiedUserCount = { count: Number(counts?.verified_user_count ?? 0) };
+  const githubUserCount = { count: Number(counts?.github_user_count ?? 0) };
+  const installCount = { count: Number(counts?.install_count ?? 0) };
+  const repoCount = { count: Number(counts?.repo_count ?? 0) };
+  const collaboratorCount = { count: Number(counts?.collaborator_count ?? 0) };
+  const cacheFileCount = { count: Number(counts?.cache_file_count ?? 0) };
+  const cacheMetaCount = { count: Number(counts?.cache_meta_count ?? 0) };
+  const cachePermissionCount = { count: Number(counts?.cache_permission_count ?? 0) };
+
+  const [filteredUserCount] = userSearchFilter
+    ? await db.select({ count: sql<number>`count(*)::int` }).from(userTable).where(userSearchFilter)
+    : [userCount];
+
+  const users = await filteredUsersQuery
+    .orderBy(desc(userTable.createdAt))
+    .limit(USERS_PER_PAGE)
+    .offset((currentPage - 1) * USERS_PER_PAGE);
 
   const totalUserPages = Math.max(1, Math.ceil((filteredUserCount?.count ?? 0) / USERS_PER_PAGE));
   const safeCurrentPage = Math.min(currentPage, totalUserPages);
