@@ -2,13 +2,13 @@
 // from app/globals.css. We resolve them here because email clients should not rely
 // on CSS variables or OKLCH support.
 export const emailTheme = {
-  background: "#ffffff",
-  foreground: "#0a0a0a",
-  muted: "#f5f5f5",
-  mutedForeground: "#737373",
-  link: "#0a0a0a",
-  mutedLink: "#737373",
-  buttonBackground: "#009869",
-  buttonForeground: "#edfdf5",
-  buttonBorder: "#009869",
+  background: "#FBFAF7",
+  foreground: "#17181A",
+  muted: "#F2F0EA",
+  mutedForeground: "#6B6C70",
+  link: "#17181A",
+  mutedLink: "#6B6C70",
+  buttonBackground: "#E8502D",
+  buttonForeground: "#FFFFFF",
+  buttonBorder: "#E8502D",
 } as const;
